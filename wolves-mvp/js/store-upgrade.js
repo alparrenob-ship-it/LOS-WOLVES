@@ -1,5 +1,5 @@
 (() => {
-  const ASSET = '../assets/';
+  const ASSET = 'assets/';
   const realImage = file => ASSET + file;
 
   const WOLVES_POP = [
