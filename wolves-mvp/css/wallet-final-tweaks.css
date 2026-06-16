@@ -8,23 +8,15 @@
   max-width:920px;
 }
 .wallet-card-top-final{
-  align-items:flex-start;
+  align-items:flex-start !important;
 }
-.wallet-card-actions{
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap:12px;
-  margin-left:auto;
-}
-.wallet-mascot-mini{
-  width:5cm;
-  height:5cm;
-  object-fit:contain;
-  border-radius:18px;
-  border:1px solid rgba(49,231,255,.42);
-  background:#020817;
-  box-shadow:0 0 26px rgba(49,231,255,.2);
+.wallet-redeem-stack{
+  display:flex !important;
+  flex-direction:column !important;
+  align-items:center !important;
+  gap:10px !important;
+  margin-left:auto !important;
+  min-width:178px;
 }
 .wallet-redeem-now{
   min-height:42px;
@@ -42,16 +34,60 @@
   transform:translateY(-3px);
   box-shadow:0 22px 48px rgba(255,209,102,.34),0 0 30px rgba(255,209,102,.26);
 }
+.wallet-lobo-frame{
+  width:136px !important;
+  height:136px !important;
+  display:grid !important;
+  place-items:center !important;
+  padding:8px;
+  border-radius:22px;
+  border:1px solid rgba(49,231,255,.42);
+  background:radial-gradient(circle at 50% 20%,rgba(49,231,255,.16),rgba(2,8,23,.72));
+  box-shadow:0 0 28px rgba(49,231,255,.18), inset 0 1px 0 rgba(255,255,255,.05);
+}
+.wallet-lobo-img{
+  width:100% !important;
+  height:100% !important;
+  object-fit:contain !important;
+  border-radius:16px;
+}
+.wallet-mascot-mini{
+  display:none !important;
+}
+.streak-card-wolves{
+  display:grid !important;
+  grid-template-columns:1fr 112px;
+  align-items:center;
+  gap:16px;
+}
+.streak-card-wolves .streak-content{
+  min-width:0;
+}
+.streak-heart-mascot{
+  grid-column:2;
+  grid-row:1;
+  width:106px;
+  height:106px;
+  object-fit:contain;
+  justify-self:end;
+  align-self:center;
+  border-radius:22px;
+  border:1px solid rgba(143,104,255,.34);
+  background:rgba(143,104,255,.08);
+  box-shadow:0 0 24px rgba(143,104,255,.18);
+}
 @media (max-width:900px){
   .wallet-grid-3.wallet-two{grid-template-columns:1fr;}
   .wallet-card-top-final{gap:16px;align-items:flex-start;}
-  .wallet-card-actions{align-items:flex-end;gap:10px;}
+  .wallet-redeem-stack{min-width:150px;}
+  .wallet-lobo-frame{width:116px !important;height:116px !important;}
   .wallet-redeem-now{min-height:40px;padding:0 14px;}
-  .wallet-mascot-mini{width:4cm;height:4cm;border-radius:14px;}
 }
 @media (max-width:560px){
   .wallet-card-top-final{flex-direction:column;}
-  .wallet-card-actions{width:100%;align-items:center;}
+  .wallet-redeem-stack{width:100%;align-items:center !important;}
   .wallet-redeem-now{width:100%;}
-  .wallet-mascot-mini{width:3.5cm;height:3.5cm;}
+  .wallet-lobo-frame{width:104px !important;height:104px !important;}
+  .streak-card-wolves{grid-template-columns:1fr;}
+  .streak-heart-mascot{grid-column:1;grid-row:auto;justify-self:center;width:96px;height:96px;}
 }
