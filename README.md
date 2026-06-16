@@ -101,7 +101,7 @@ Con nuestra plataforma esperamos:
 
 
 ### 📄 Whitepaper
-/docs/whitepaper V.02.pdf
+[Ver Whitepaper](docs/WHITEPAPER-WOLVES-V.02.pdf)
 
 ### 🖼️ Infografía
 ![Infografía](assets/INFOGRAFIA.png)
