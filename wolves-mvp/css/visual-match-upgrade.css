@@ -83,7 +83,74 @@
   border-color: var(--cyan);
   box-shadow: 0 0 16px rgba(49, 231, 255, .7);
 }
+.visual-streak-card {
+  max-width: 980px;
+  margin: 28px auto 0;
+  padding: 26px 28px;
+  text-align: center;
+  border-color: rgba(49, 231, 255, .14);
+  background: rgba(8, 18, 42, .82);
+}
+.visual-streak-card h3 {
+  margin: 0 0 20px;
+  color: var(--cyan);
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+}
+.visual-school-week {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(112px, 1fr));
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.visual-week-cell {
+  min-height: 116px;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 6px;
+  border-radius: 12px;
+  background: rgba(2, 8, 22, .78);
+  border: 1px solid rgba(49, 231, 255, .08);
+}
+.visual-week-cell.done {
+  border-color: rgba(33, 201, 145, .68);
+  background: rgba(24, 199, 144, .13);
+}
+.visual-week-cell strong {
+  color: #a9bad8;
+  font-size: 12px;
+}
+.visual-week-cell img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: 9px;
+}
+.week-check {
+  color: #22e39f;
+  font-weight: 900;
+}
+.week-dash {
+  color: #8091af;
+  font-size: 18px;
+}
+.streak-note {
+  border-top: 1px solid rgba(168, 190, 216, .12);
+  padding-top: 18px;
+  color: #a9c4ea;
+  font-size: 13px;
+  line-height: 1.45;
+}
+.streak-note strong {
+  color: #ff6f6f;
+}
+.streak-note b {
+  color: var(--cyan);
+}
 @media (max-width: 980px) {
   .real-hero,
-  .real-emotion-grid { grid-template-columns: 1fr; }
+  .real-emotion-grid,
+  .visual-school-week { grid-template-columns: 1fr; }
 }
