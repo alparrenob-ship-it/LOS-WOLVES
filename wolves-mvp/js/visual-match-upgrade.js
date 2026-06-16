@@ -1,12 +1,12 @@
 (()=>{
 const WOLVES_ASSETS={
-  heroWolf:'../assets/LOBO INICIO.png',
+  heroWolf:'assets/LOBO INICIO.png',
   moods:{
-    Alegre:'../assets/ALEGRE.png',
-    Tranquilo:'../assets/TRANQUILO.png',
-    Triste:'../assets/TRISTE.png',
-    Ansioso:'../assets/ANSIOSO.png',
-    Enojado:'../assets/ENOJADO.png'
+    Alegre:'assets/ALEGRE.png',
+    Tranquilo:'assets/TRANQUILO.png',
+    Triste:'assets/TRISTE.png',
+    Ansioso:'assets/ANSIOSO.png',
+    Enojado:'assets/ENOJADO.png'
   }
 };
 
