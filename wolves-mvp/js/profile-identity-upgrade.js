@@ -1,13 +1,13 @@
 (()=>{
   const AVATARS={
-    lobo:{label:'Lobo',image:'assets/AVATARLOBO.png'},
-    loba:{label:'Loba',image:'assets/AVATARLOBA.png'}
+    lobo:{label:'Lobo',image:'assets/LOBOAVATAR.png'},
+    loba:{label:'Loba',image:'assets/LOBAAVATAR.png'}
   };
   const NFTS=[
-    {id:'nft-lobo',label:'NFT Lobo',image:'assets/NFTLOBO.png'},
-    {id:'nft-loba',label:'NFT Loba',image:'assets/NFTLOBA.png'},
-    {id:'nft-lobo-gafas',label:'NFT Lobo Gafas',image:'assets/NFTLOBOGAFAS.png'},
-    {id:'nft-loba-gafas',label:'NFT Loba Gafas',image:'assets/NFTLOBAGAFAS.png'}
+    {id:'nft-lobo-capucha',label:'NFT Lobo Capucha',image:'assets/NFT LOBO CAPUCHA.jpeg'},
+    {id:'nft-loba-capucha',label:'NFT Loba Capucha',image:'assets/NFT LOBA CAPUCHA.png'},
+    {id:'nft-lobo-gafas',label:'NFT Lobo con Gafas',image:'assets/NFT LOBO CON GAFAS.png'},
+    {id:'nft-loba-gafas',label:'NFT Loba con Gafas',image:'assets/NFT LOBA CON GAFAS.png'}
   ];
   const GRADES=['Quinto EGB','Sexto EGB','Séptimo EGB','Octavo EGB','Noveno EGB','Décimo EGB','Primero de Bachillerato','Segundo de Bachillerato','Tercero de Bachillerato'];
 
