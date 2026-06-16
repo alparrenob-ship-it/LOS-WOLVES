@@ -70,7 +70,7 @@ WOLVES es una plataforma digital de bienestar emocional estudiantil que utiliza 
 ## 🔗 Enlaces del Proyecto
 
 ### 🎨 Arquitectura en Figma
-https://www.figma.com/file/[TU-LINK-AQUI](https://www.figma.com/make/y3BM2oadM6X2m0E1mzyGiu/Crear-mapa-de-flujo?fullscreen=1&t=wiWVLAloJG0hf58n-1&code-node-id=0-9)
+[Ver diseño de WOLVES en Figma]([https://www.figma.com/file/TU-LINK-AQUI](https://www.figma.com/make/y3BM2oadM6X2m0E1mzyGiu/Crear-mapa-de-flujo?code-node-id=0-9&p=f&t=ZRqs2MdGvjIjTj3A-0&fullscreen=1)
 
 ![Arquitectura](assets/ARQUITECTURA.png)
 
