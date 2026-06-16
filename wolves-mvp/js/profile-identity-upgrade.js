@@ -6,11 +6,11 @@
     jade:{label:'Jade Místico',color:'#18c790'}
   };
   const AVATAR_NFTS={
-    lobo:{label:'NFT Lobo Alpha',image:'assets/NFTLOBO.png'},
-    loba:{label:'NFT Loba Alpha',image:'assets/NFTLOBA.png'}
+    lobo:{label:'NFT Lobo',image:'assets/NFTLOBO.png'},
+    loba:{label:'NFT Loba',image:'assets/NFTLOBA.png'}
   };
   const GRADES=['Quinto EGB','Sexto EGB','Séptimo EGB','Octavo EGB','Noveno EGB','Décimo EGB','Primero de Bachillerato','Segundo de Bachillerato','Tercero de Bachillerato'];
-  const NFTS=['Corona Imperial','Gafas Alpha','Headset Cyber','Halo Zen'];
+  const ACCESSORY_NFTS=['Corona Imperial','Gafas Alpha','Headset Cyber','Halo Zen'];
 
   function currentUser(){return typeof user==='function'?user():S.users.find(x=>x.email===S.currentUser)||S.users[0];}
   function persist(){if(typeof save==='function')save();}
@@ -26,7 +26,7 @@
     u.previewAvatarType=u.previewAvatarType||'';
     u.previewNft=u.previewNft||'';
     u.equippedNft=u.equippedNft||'';
-    S.nfts=NFTS.map(name=>({name,unlocked:Boolean((S.nfts||[]).find(n=>n.name===name)?.unlocked)||(S.challenges||[]).length>=5}));
+    S.nfts=ACCESSORY_NFTS.map(name=>({name,unlocked:Boolean((S.nfts||[]).find(n=>n.name===name)?.unlocked)||(S.challenges||[]).length>=5}));
     persist();
     return u;
   }
@@ -56,6 +56,8 @@
     const chosenNft=u.equippedNft||u.previewNft||'';
     const unlocked=(S.challenges||[]).length>=5;
     const visualType=u.previewAvatarType||u.avatarType;
+    const avatarTiles=Object.entries(AVATAR_NFTS).map(([type,data])=>`<article class="identity-nft avatar-mini-nft ${visualType===type?'active':''} ${unlocked?'':'locked'}"><span class="lock-label">${unlocked?'NFT':'Locked'}</span><img class="mini-avatar-img" src="${data.image}" alt="${data.label}"><h3>${data.label}</h3><p>${unlocked?'Seleccionable como avatar.':'Bloqueado · requiere 5 retos'}</p><div class="nft-actions"><button class="ghost-btn preview-avatar" data-avatar="${type}">Probar</button><button class="primary-btn select-avatar" data-avatar="${type}" ${unlocked?'':'disabled'}>Usar</button></div></article>`).join('');
+    const accessoryTiles=ACCESSORY_NFTS.map(name=>`<article class="identity-nft ${chosenNft===name?'active':''} ${unlocked?'':'locked'}"><span class="lock-label">${unlocked?'NFT':'Locked'}</span><span class="nft-lab-icon">${nftIcon(name)}</span><h3>${name}</h3><p>${unlocked?'Desbloqueado y equipable':'Bloqueado · prueba visual permitida'}</p><div class="nft-actions"><button class="ghost-btn preview-nft" data-nft="${name}">Probar</button><button class="primary-btn equip-nft" data-nft="${name}" ${unlocked?'':'disabled'}>Equipar</button></div></article>`).join('');
     return `<section class="identity-profile-grid">
       <article class="rpg-card identity-avatar-card">
         <span class="status-chip"><i></i> Online</span>
@@ -76,13 +78,9 @@
         </div>
         <button class="primary-btn identity-save" id="identitySave">Guardar datos de perfil</button>
       </article>
-      <article class="rpg-card full-width identity-avatar-nft-card">
-        <div class="section-title-row"><div><h3>Avatares NFT bloqueados</h3><p>Estas dos identidades premium se desbloquean al completar la biblioteca de 5 retos.</p></div><span class="season-chip">${(S.challenges||[]).length}/5 retos</span></div>
-        <div class="avatar-nft-grid">${Object.entries(AVATAR_NFTS).map(([type,data])=>`<article class="avatar-nft ${visualType===type?'active':''} ${unlocked?'':'locked'}"><span class="lock-label">${unlocked?'Disponible':'Locked'}</span><img src="${data.image}" alt="${data.label}"><h3>${data.label}</h3><p>${unlocked?'Seleccionable como avatar principal.':'NFT bloqueado por progreso de retos.'}</p><div class="nft-actions"><button class="ghost-btn preview-avatar" data-avatar="${type}">Vista previa</button><button class="primary-btn select-avatar" data-avatar="${type}" ${unlocked?'':'disabled'}>Seleccionar</button></div></article>`).join('')}</div>
-      </article>
       <article class="rpg-card full-width identity-nft-card">
-        <div class="section-title-row"><div><h3>Accesorios NFT desbloqueables</h3><p>Prueba cada accesorio en tu avatar y equípalo cuando completes los 5 retos.</p></div><span class="season-chip">Bono estacional</span></div>
-        <div class="identity-nft-grid">${NFTS.map(name=>`<article class="identity-nft ${chosenNft===name?'active':''}"><span class="nft-lab-icon">${nftIcon(name)}</span><h3>${name}</h3><p>${unlocked?'Desbloqueado y equipable':'Bloqueado · prueba visual permitida'}</p><div class="nft-actions"><button class="ghost-btn preview-nft" data-nft="${name}">Probar</button><button class="primary-btn equip-nft" data-nft="${name}" ${unlocked?'':'disabled'}>Equipar</button></div></article>`).join('')}</div>
+        <div class="section-title-row"><div><h3>Accesorios NFT desbloqueables</h3><p>La barra incluye avatares NFT y accesorios pequeños. Completa los 5 retos para desbloquearlos.</p></div><span class="season-chip">${(S.challenges||[]).length}/5 retos</span></div>
+        <div class="identity-nft-grid compact-nft-grid">${avatarTiles}${accessoryTiles}</div>
       </article>
     </section>`;
   }
