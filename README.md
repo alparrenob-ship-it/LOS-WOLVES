@@ -1,6 +1,6 @@
 # Wolves
 Plataforma Digital de bienestar emocional estudiantil diseñada para fortalecer la prevención, el acompañamiento y el seguimiento emocional dentro de Eight Academy
-![Banner](https://drive.google.com/file/d/1LC7nPVNXl_Ynd5GK1ZwB7uEHEv8GhG56/view?usp=sharing)
+
 
 # Integrantes
 Maite Bravo – Líder
