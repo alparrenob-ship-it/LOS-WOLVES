@@ -1,12 +1,15 @@
 # Wolves
 Plataforma Digital de bienestar emocional estudiantil diseñada para fortalecer la prevención, el acompañamiento y el seguimiento emocional dentro de Eight Academy
-
+![Logo Wolves](assets/images/LOGO-FONDO-AZUL.png)
 
 # Integrantes
-Maite Bravo – Líder
-Hazel Yánez – Marketing
-David Palacios – Diseñador y Programador
-Anita Parreño - Mnentora
+
+| Integrante | Rol |
+|------------|-----|
+| Maite Bravo | Líder del Proyecto |
+| Hazel Yánez | Marketing |
+| David Palacios | Diseñador y Programador |
+| Anita Parreño | Mentora |
 
 # Problema que se quiere resolver
 Actualmente muchos estudiantes enfrentan estrés académico, ansiedad, frustración, tristeza y dificultades para expresar sus emociones dentro del entorno escolar. En muchas ocasiones, estas emociones pasan desapercibidas, provocando problemas de convivencia, bajo rendimiento académico, desmotivación y afectaciones en la salud emocional de los estudiantes.
@@ -27,12 +30,13 @@ WOLVES propone una plataforma interactiva donde los estudiantes pueden:
 La plataforma utiliza blockchain para registrar recompensas y logros digitales de forma segura y transparente.
 
 # ODS al que se vincula
-# ODS 3 – Salud y Bienestar: 
-Promueve la salud emocional, la prevención del estrés y el bienestar mental estudiantil.
-# ODS 4 – Educación de Calidad:
-Fortalece ambientes escolares saludables e innovadores mediante tecnología educativa.
-# ODS 9 – Industria, Innovación e Infraestructura:
-Integra Inteligencia Artificial y Blockchain como herramientas tecnológicas innovadoras aplicadas a la educación.
+
+| ODS | Nombre | Aplicación en WOLVES |
+|-----|---------|----------------------|
+| 3 | Salud y Bienestar | Promueve el bienestar emocional estudiantil |
+| 4 | Educación de Calidad | Mejora el acompañamiento educativo |
+| 9 | Industria, Innovación e Infraestructura | Utiliza IA y tecnología digital |
+
 # Tecnologías que se usarán
 
 ## Frontend
@@ -62,14 +66,16 @@ Integra Inteligencia Artificial y Blockchain como herramientas tecnológicas inn
 - GitHub
   
 # Funcionalidades Principales
-- Mood Check emocional
-- Retos interactivos
-- Sistema de recompensas Eight-Coins
-- Wallet digital
-- Panel DECE
-- Wolf AI
-- Tienda de recompensas
-- Ranking de la manada
+
+| Funcionalidad | Descripción |
+|--------------|-------------|
+| Mood Check | Registro diario de emociones |
+| Wolf AI | Asistente emocional inteligente |
+| Retos | Actividades de bienestar |
+| Wallet | Gestión de EightCoins |
+| Panel DECE | Seguimiento emocional |
+| Tienda | Canje de recompensas |
+| Mapa de Calor | Análisis emocional institucional |
 
 # Impacto Esperado
 
