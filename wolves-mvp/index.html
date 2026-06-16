@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOLVES | Bienestar Emocional Estudiantil</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <header class="topbar">
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    <div class="brand">
+      <div class="brand-mark">W</div>
+      <div>
+        <strong>WOLVES</strong>
+        <span>Eight Academy</span>
+      </div>
+    </div>
+    <div class="topbar-actions">
+      <button class="ghost-btn" data-open-auth="login">Iniciar sesión</button>
+      <button class="primary-btn" data-open-auth="register">Registrarse</button>
+    </div>
+  </header>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-title">Panel WOLVES</div>
+    <nav id="roleMenu"></nav>
+  </aside>
+
+  <main class="app-shell">
+    <section id="publicView" class="view active"></section>
+    <section id="studentView" class="view dashboard-view"></section>
+    <section id="deceView" class="view dashboard-view"></section>
+    <section id="adminView" class="view dashboard-view"></section>
+  </main>
+
+  <section class="demo-console" aria-label="Consola demo por roles">
+    <span>Consola Demo</span>
+    <button data-role="guest">Invitado</button>
+    <button data-role="student">Estudiante</button>
+    <button data-role="dece">DECE</button>
+    <button data-role="admin">Administrador</button>
+  </section>
+
+  <dialog id="authModal" class="auth-modal">
+    <div class="modal-head">
+      <div>
+        <strong id="authTitle">Acceso institucional</strong>
+        <span>Ingresa a la manada WOLVES</span>
+      </div>
+      <button id="closeAuth" class="icon-btn" aria-label="Cerrar">×</button>
+    </div>
+    <div class="tabs">
+      <button id="loginTab" class="tab active">Iniciar sesión</button>
+      <button id="registerTab" class="tab">Registro</button>
+    </div>
+    <form id="loginForm" class="auth-form active">
+      <label>Correo institucional<input type="email" id="loginEmail" required placeholder="estudiante@colegio.edu.ec"></label>
+      <label>Contraseña<input type="password" id="loginPassword" required placeholder="Contraseña demo"></label>
+      <button class="primary-btn" type="submit">Ingresar</button>
+      <p class="form-help">Correos demo: estudiante@colegio.edu.ec, dece@wolves.com, admin@wolves.com</p>
+    </form>
+    <form id="registerForm" class="auth-form">
+      <label>Nombre completo<input type="text" id="registerName" required placeholder="Nombre del estudiante"></label>
+      <label>Correo institucional<input type="email" id="registerEmail" required placeholder="nombre@colegio.edu.ec"></label>
+      <label>Contraseña<input type="password" id="registerPassword" required></label>
+      <label>Nivel educativo<select id="registerLevel" required></select></label>
+      <label>Grado académico<select id="registerGrade" required></select></label>
+      <label>Rol<select id="registerRole" required>
+        <option value="student">Estudiante</option>
+        <option value="dece">DECE</option>
+        <option value="admin">Administrador</option>
+      </select></label>
+      <button class="primary-btn" type="submit">Crear nueva cuenta</button>
+    </form>
+  </dialog>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
