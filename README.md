@@ -112,7 +112,7 @@ Pendiente de agregar enlace.
 
 ### Whitepaper
 
-[Ver Whitepaper WOLVES](wolves-mvp/docs/whitepaper.md)
+[Ver Whitepaper WOLVES](WHITEPAPER%20WOLVES%20V.02.pdf)
 
 ### Infografía
 
