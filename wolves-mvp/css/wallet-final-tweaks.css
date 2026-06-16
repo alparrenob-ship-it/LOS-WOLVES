@@ -12,18 +12,19 @@
 }
 .wallet-card-actions{
   display:flex;
-  align-items:center;
-  gap:10px;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:12px;
   margin-left:auto;
 }
 .wallet-mascot-mini{
-  width:34px;
-  height:34px;
-  object-fit:cover;
-  border-radius:9px;
+  width:5cm;
+  height:5cm;
+  object-fit:contain;
+  border-radius:18px;
   border:1px solid rgba(49,231,255,.42);
   background:#020817;
-  box-shadow:0 0 16px rgba(49,231,255,.18);
+  box-shadow:0 0 26px rgba(49,231,255,.2);
 }
 .wallet-redeem-now{
   min-height:42px;
@@ -44,12 +45,13 @@
 @media (max-width:900px){
   .wallet-grid-3.wallet-two{grid-template-columns:1fr;}
   .wallet-card-top-final{gap:16px;align-items:flex-start;}
-  .wallet-card-actions{align-items:center;gap:8px;}
+  .wallet-card-actions{align-items:flex-end;gap:10px;}
   .wallet-redeem-now{min-height:40px;padding:0 14px;}
-  .wallet-mascot-mini{width:30px;height:30px;border-radius:8px;}
+  .wallet-mascot-mini{width:4cm;height:4cm;border-radius:14px;}
 }
 @media (max-width:560px){
   .wallet-card-top-final{flex-direction:column;}
-  .wallet-card-actions{width:100%;flex-direction:row;justify-content:space-between;align-items:center;}
-  .wallet-redeem-now{flex:1;}
+  .wallet-card-actions{width:100%;align-items:center;}
+  .wallet-redeem-now{width:100%;}
+  .wallet-mascot-mini{width:3.5cm;height:3.5cm;}
 }
