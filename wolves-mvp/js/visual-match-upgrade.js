@@ -1,15 +1,88 @@
 (()=>{
-const REAL_ASSETS={"heroWolf":"data:image/webp;base64,UklGRnQFAABXRUJQVlA4IGgFAACwKQCdASrcAKUAPp1MokslpKOvKDSJeeATiWdu3V0xx5zJodxpoicpv5bqJJf0/UZ08MZbMUxLrhSPgoMclgWj6mFa+oZsCkAWls7mXyi5jOiW0xNuVHzQ/vvg+hX1vPucoO/CJja3qoF3tYi52eNryuT00Yps4o7i8IvY2v9pav7MH6dwAPNA2mPwKVFn84NsGE02ixSp4cKdFuD8l3g8TSzRZj+yY3Qqz3pBumInfzx/jKcISGV4wSyEWQ7/Aik5w3pyElRuByNvOdNScCyhROdGWC/V/9Ndj3POcApGtPhScNE3G2aKRieETd3/gHclSsREdNsqPFU2mrlQ6cz3+bOphxnoPrNgZS6S2xNoUMKFFVhElhTKoDQw/7yUTmxt5XdEVQgh35dQpnjW9cuaXp9CYuXdZRnYgBuUuUd3i7mA3YCNtlM6sYGntTH6iLQVGlFcrgAA/vi1gOx7g6byX5eQTT98N0RZqr5Cb+m1b36jb4kbnkSZWkMujG2JxHxDr4v3eQSHti375Jvv4OCKJ1ui/SU9jBnnc0geBLEdEu03mcQhx9FarJjJUBPWZ2M78g4PqFaTEcnEETbwYKpQZCqHppYxskZIoGoObMxRwPdB35o0A9flUmUCJzY/hUP7jUzZc+Q6rYhrRwtzt1ymcvBlcao6XDf+OzLvykMVJimoic89luNUn0fNoxcAOeBBFYsjhjdd8feRuY9q+2qCnlkehMIi3NM+iw6B4c+v0lrqYQkbuk8oloUKigF3pF0zuSvXl2sl0xAVY2JOGPKfl1TlaSPpHHkudDsqDnA0XCyVQYv+scrhQbRP8PSHgvX9Ba2rnULk17sGtKyevbf977/fWo79zYF3srm/c8iJqmG7ukZg8Z0jcxO63tkrB4JuhDX1fFqrh1L7iphRAZ3Z3fgxZU5Ndm09UvFX9dhDMjPNe1004mc7BsISQL7hukcvr6PRBi8q/dQ3F0FZhndPJhHwN0Kpt1j1Dpu2HuJiMgFziR/YClsiwEIh663mKvc2YQrb+Lyz5/g1eyw+6YKrhpk8B94LuOmpnmbBpNYm1vlvrjZmEi9x0z6OrXPuOPp2Iz8iK4W8sxzrFoS2Df9OJbXUxAxRdy7nab1Rs8MEDn26m5cwjhvfgYMwj7k/8YssCLr6EuFE4KWP0sMf5Zp+h0thlTCdf4di0f49JZeX4KmxBzMzBnToif/Ms8GdCAkEds2ew6scUAuHrsG4K8xy7G35WFJiy8f6oDTLuE5CLzNZzJnbi/56dmwtkzIafheFmaBThmy4u1VlLaFPhsGUgObEGAX0MSvwu6X3veOSi22ss8LX/yp5hMXhMegQbLtzP4aoiC+ivUPw4H4peTzxi+sekiTPc+/mjGKtlUf8oFF/i2QF0pqbC9kDpw2w//+GQrILXjWl+BKr41z4sRjC+ZPxtnIAP7GvTKiwWKa810ThrtxcKWCllkGNzP+feuVJw5JDTHIynXIgm9qz2Y5Qo9ow1QbuyzD6n8IJ/jwhID/zkpZb3irw5nq2rya+86RmZJ811cMU0ViyoWm0mdJt36x29ZwUNxTNlm+KCwCuS9ZHkUkVfsfkzHSnDeOSaLR3bPsmLMHVmMbmWMg3LEBdLLkfhkcpZFkoKpWM0V+QDC159BzbRzw40YHwa3QRa/l9LUIaypJ3CXJJ9OQIZQ7V+2r2y2cw+IS4Tyj/I04zw8Bq8AHD2hNCUFDV832DNKYMk4j8NoH+tbjPvL04sHYjGw7leuxfPASVdSDWHcG6C5mf8kc9EvWKg/7Ox49mDX/aHVRPL2qRlwrY3WPzpQU0vg5LsAo0TJU9pXR2kIg0gK/kXntGVUAA","moods":{"Alegre":"data:image/webp;base64,UklGRhYDAABXRUJQVlA4IAoDAADQDwCdASpMAEcAPp1Enkqlo6KhqPbaqLATiWgA0XPR0LM94on/+rt6kdsB5gP1j9Yf0Nf5zfRvQA6Wj/K4IBtQn4DEM3bu5WLeHStN2Rxhbo00/RkCl74SSj2XsEst3LxinO3WtLfqGZQH+MxOLxUnTWMMIlcbrkOBCUD93nDS80YB9D13aQAA/vm+F2224BfPJdpI/3RW7RlL+0CfCWfG6epV4UHxTB08XjINlnofhaZt4ELVJ26S2POMkbA8dgqxoueUeN6LCv+ZQ0f+5UMs3zGFtM8kfaV7SiuA8BkddHyhztQXni0Me/Ag76cfmZuwlV3IfRtzsQwX2J/xTDVawOUxueRp8H8sOHxgjlC2uQhkoQ8+qr+Ap46wLL1+C/5TdVzpmPq7nXcH9P9ESeWOn5gR5XTjz4b/4YEY6r+m453Quv2zfAETSoc5RIpOX0RKQaGFwnuAbZ9y+aeu4xVyLfwPYR71sybfmfGTguLBLlAeiOIHRAyZza6eQ8Cz1NzMhtnu4YU9zRXEzn8T8Uma65jM/wiCxdNfnO0XLD6gfbREpIj2N4DnvFgn88mO/MX6kIzLL003pFjgZ64Q7u5QqhuUKmgrzGXc0cBPer7DazizFcFWH4ZKyFBa9UMSlkO/I7pjJusVohE/XWR4E0l/p6R8ZGy4V8sKJdEKRdiVoXz9vcKGPmlHWS4qE7rGeaHKzYrSYKKJoS+1f9a3RTm+TQxrziDzcPoUwGCa0sCFd0ajPwRZYnx97SlNtRSsAKRSeLidpJA7+kbDAbeTYWhS6qff0DyYBGrjj9YMfNxvwMs+Dl91JzXKZCn6/wN3l5G2fPxi5KOV+XwFX82VpnzOvPP84mZaQucWVv8kFhRzpMy11waWw/r6UnbSA7mrKv/C8vpneZX9tWoIQOj/MpdTXEVf6l6nfgM1BkY8FKXfmBHJdI3wGxWPFpIH/FgK9/hd1CyCm63zJbN+uP3yDeafLfnLcd7f7JhqCq3iRYl7vllMFY4CzdpOB21pSsO5x3iUJhfXRl42AAAA","Tranquilo":"data:image/webp;base64,UklGRiIDAABXRUJQVlA4IBYDAACwEACdASpMAEcAPp1EnUmlpCKhK5VbALATiWgA0qmW/t2ttGN3PHU0DR5M3t6gNsZ5gPNf9D28M/s57AH6zdbBXj3g0NaiGJmfk9kX/lvYzJifpdmRcWM+j7Q1Us4S3tGJcFoyh4obiLXithcYYuzYw0zm84/i4TEC2YKiH1RqMXYkCc4U8qRy7JFZImgAAP76M7AVlN3WdH74w/eA6v6Kor/1j5B6oaDyoQ7yra/xulxceU3VzsW58vKmgPqCez/Ahz4bSd6n0xf4ATJXVxJ3jLEG/hnbWuxKGWwyJIPox4AyYSipCFcYNhhEPhs8lzcv/m7YgMk3YHyC3dazM31lZ585+6yNlhUjdqfRO9yzd8lHUoQNVA+mg0AD3POWUmu1eCREvczMiqX5fnasMN3ZKMxRQFqD0+6XZhOVqcaUJjMCWSrTDptZubK1SsKGvzHIEZlp1z6hbl7gq0hBP6f+Bxk1Pwsw/O1k7UZwi93m95wkzob9ZGwlRAVCRMlTriSK/mWkh+fwf2PBfRgrmj8futTndzkeSBmUi841toV8rkZSjCEzgRX+Suf8OOhn+oiJ2Y+u9HHlqSMF8Yh0+n8AXcHiCGEYvNCVMOy/YGrg1jRMVtLAf1FtceflNDks6D974vsIzhoLVZQvmdXMNt/nwto102tKpjvmQlVr/WXrrWwaSm10xjGNXktU5UuM1rijtfz/neXP4TC0NcF698NV82QWtTrYI8+p72u4ccOntrh9+nxNjroGlKMwo/n3gSw4Z8ThXyvYjZF4dr7euxyZ9Ci5hvt4lW/cPTkwLumNIOXgGKmu635HXq6Qwzle1/SNTktJm/lWOYBJTTNyC0FLQ1X2KOKzu8NEIrE3mlkTs1vaiAGxnBc/JloI//C/Aaw6oXMjwhuq1Pn36tNkRH33nLeTlRXMdwWlPi0nyF8Wo/lkg70S6sY19JX4/+1kQz9K+7uMtP/i0D47Dsfl6tCnE9AtdLe4EX09TCUvC6w4kWyqao6Q/ezB+rZ6UvYH7t3hMjOD9eMKZj52UlUVpzOtNFaWAAAA","Triste":"data:image/webp;base64,UklGRgwDAABXRUJQVlA4IAADAADwDgCdASpMAEcAPp1EnUqlo6KhqPkqqLATiWgA1H/oLBtpRXISe2W8x/m4+hznmfYN9ADpXcAA0IHdfLeYMaVZnAsgJBLU3/6bH6kT1LaX9P4MQfQxKdPMk17AT8zNn6zSxL8ObL1MHsY3I4+FuLHhw7Ze7IqBe266v4ZvldKnwAD++jPL60tXHReYMRAOZ/slAMn02UCJpl4Ojee4LXJCbRhsijZMeAROe5tddTWvDYWl0oVJJBnJ4TXX3D1fkrS9xyVmSl1mFPxLakeaP6mzLAsoafzkvl2JRFvs3ct381frFmn/5g2Yz6DDhsdgD+7t/s2SyGJHkJNdxL3vPVK38eP0+MY6jGQ8bm3KBzBIIku0QXrVhRR55oxfx/U9BL80PMI78NPHl5Fy8QExcvdklmWqHig31xtPxd0okZlHKelZUrghppZX1m+EzmVC9QvaeCWAjugpV+d6uxfTj3m6RnTDKfH3/cCpHD7XQaKgWBA/r12jYeicZ4pxdzzv+DtCe8PbQiQEC94/7dwNkxNkJrKSwe+rb5r/z38fbqNyeF5S4gFwY/gkg2p0rcWipeMXzRjWmY00EOshnW1m2Ys7HGIep7M1FtSsQtfbqYSxQ3RDBGR9oeCemEklHWl06pxD4oocuGDN4pw8d5i2BEaAy+Twd2OVEaGBPkVQVtsnEssIZsEjCzOxKcCGSH7qhj76txWHtjMXj+5LIJp0NsYdvGh+kdyNdGjZmBV0HBiKqQpYqP26tRBZuUXzy+HBH8t61/uC8MN0NTK1he+NH+PMewL76LY1dtgu+Nxmlg32rLmq5/Oupxa8vmaLujR+R6lZRmLq11o5FIcA7rjuod6MH7O/bX04fsT2Vi5apT3Q0Zf85LwRhv7dqDliv7f3h7g6jNg4QEIuu+WwBZ3NS4mpzzw7cq8WeuaT917sJ+08vw5+lgfHsPoaS7nxbxJPRssRgVI7TdiJQPxAkyrn9TjAzJ3sNscT1Tnmh5NfHuRnM+BxT7HSryqE0+w89wAAAAA=","Ansioso":"data:image/webp;base64,UklGRkYDAABXRUJQVlA4IDoDAACQEACdASpMAEcAPp1EnEqlo6Khq5OagLATiWoA1H/FfDeZtY22lGGre+oDbN+YrzYf7l6kueA9hv0Jf0560X+7P3Iy26SdZt8sclr23qRpU+sfD132SZ0Am5Femk/JeeP2wsxS1If5soYR/T0DP+D9zCYJccrqH6z9AuhdSJZuVusiDL58WVWLPShP2lwA/vqJ3+uIbLcHe5LSNsGA7W3aorCK4An7IcTZIa8GiD1ousuM6eL3O6X2polBKDSPTdZcSlDVRr2V5fW+KDmPwZcMh/04cRucBm2q+SzP0MxymBxvotCo6iaGoBt4T9UJ6N8RKZ/h1ZIISm6n1ihOcZvPpz2vzivyPde4Zf3Yu1WraH4q1xn9jfxWdVYf2Fu0x2aft+wwr5IlzCL0L0OtmP4VZCz6a4EZJVHrKtNzIw9+p3y8YhMP5TVO4ZhpHi34Qez8XP44sIxBFqKBLecqBYHjmfJTHdfssg8zHw9v9wFGrBbR1uBkNIKzAG0viaB4mTAs06g1cbvbRgyFxrH7j/lQOObFuYDokx3uEXgx3S0a4TyC8DfoaddRKkOwh49o1wtOxNkKHv9KotaHNDtzTo4u793KCWsYPakCq9ZppdVGivOpHAGHt38+q/dvamYBIrrgqkJXdLsr4kJRrUqzOCJHP/7aeqKRrsLlXlNpBL2vy6j5AyI99fTpmcPBq9+YJItKu0ILOCg/Su8D5MgfmtNYwGtd5qIJG9S3vlsJdBuyLhKu0gq1qpUu4lYbopwBI9siuNii3EgT302Pr3NHFtZdG2fk2Fn69GJ/mZzQMsLz/dScxqE5C9/gwq0lPaF33MdCa4/bT5B+I7zFGqxzoChxKuFjnkZWnoUnz+T5nI5RfU/5qzWRrzY+YhIzWl/g3DWPUMiBT11/9ifuQBfRXwGHef2dPQSJvOpvfIMp/8XgfkIYSfpRexsLZ8dXYm//nXYygr3CtNNfljuhSv1sLajrV8/dYP/K2tITAADl3TnYL5MaX12ftb1etLkB8JjDmLqPOhA/RB8t9trIYaZXWHsFjlB2ZKwhGP6Lur9+O3m7PUejISrrgtawdHDAh13kkPsz5UaOkSPQAAAA","Enojado":"data:image/webp;base64,UklGRhoDAABXRUJQVlA4IA4DAADwEACdASpMAEcAPp1Gnkqlo6KhqPbaqLATiWoA0m3aPV/sHHe9HQUHV3KvOZ2y3mA85D0Hc8V7KvoQfrN1rf+PYO83eW/piZn/k0efi2iovQb01L/3RmoNvOWAdCf8gRbxvh7JzxLpfRk3OVZPOI1YcBb5QuMExjg00i4lMbMo2vCg+Q7WFv37NGYylgUGagAA/vnnAYd2EYbSmHJMi43g7NxWoZvHxlPZC8zY0C4D8HVnwU5tvHJQbZj89AmluYOK5JMswG+kyUdpk5G4zbgv03YhXZ5ze9rqBIms8hLup8HO8wA9npbZQWR9Qaeu4lFa2DZIFqiUCrbAFc7a0dgIaHJZwHD+GsPnzdvT1F//g7LeB8mRIjVAxJZ5dCajJBQaeirKf9BHeCr9rZi0/2ipd2rLp2YEn7P9HPsv734gbuvuhn1pKgU63iSyCH90ngCS2/L+7HTxElmkVUVRS767xJN6QbQL/g42QhPIZ4/G336Tg5dhO+z0MPakE1p+3ftytkPsfYwDPtVLG53zN92y8zeEAcnUgh37zelbHFjwIxgE97HHB4OWiAFD77hXN0o81d8+IhDTk7e6Xg427aI1KlAz7QzW/RpEAm3eIHZUPcb7xGyXy/vEo/RDZFWk/TFGlVyvlBkmSlmk7T/NBpTSVsW+1eSRGcb9P+jMYpL268VqjzwRzZq8CmYx37Moyt+FmMbO5Fj+HapIha0k0gvGQQOxwmfsyFUW3mAaPBUYFh9dL5AeEE2I01XVm6EFNfWTnU1dKBpvBTepAa0TfbZLGzGqbBoEXpJJupRIdDHewx7hmUPvzV4sh4OYdaEElGnn3M4DM9QekPj11qnscLth+i1Q51xfdoMKMkgeBQ4/fnRB+6tuAZii8GrWbv/KzI3mQU7IrjEApOIAAZgTgbewLz3Zc5ix/bx9/Y+80sQTZLowZFoKmyucsaRv3aBPOEtjk7sM3AdfRI7HsH8yLmepbaTn+C5k55UCmu0bu7DBR3P94hMXLxVcqO7f+ZsZHxx/MDRdQA/vOL1UvwAAAA=="}};
+const WOLVES_ASSETS={
+  heroWolf:'../assets/TRANQUILO.png',
+  moods:{
+    Alegre:'../assets/ALEGRE.png',
+    Tranquilo:'../assets/TRANQUILO.png',
+    Triste:'../assets/TRISTE.png',
+    Ansioso:'../assets/ANSIOSO.png',
+    Enojado:'../assets/ENOJADO.png'
+  }
+};
+
+function safePlan(name,price,subtitle,features,featured){
+  if(typeof plan==='function') return plan(name,price,subtitle,features,featured);
+  return `<article class="plan-card ${featured?'featured':''}"><h3>Plan ${name}</h3><strong>${price}</strong><span>USD / año</span><p>${subtitle}</p><ul>${features.map(f=>`<li>${f}</li>`).join('')}</ul><button class="primary-btn buy-plan" data-plan="${name}">Contratar ${name}</button></article>`;
+}
+
+function bindVisualLanding(){
+  if(typeof bindLanding==='function') bindLanding();
+  document.querySelectorAll('.buy-plan').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      if(typeof toast==='function') toast(`Contrato ${btn.dataset.plan} simulado correctamente. WOLVES activará la licencia institucional.`);
+    });
+  });
+}
+
 window.addEventListener('load',()=>{
-  if(typeof S==='undefined')return;
-  pub=function realLanding(){
-    e('publicView').innerHTML=`<section class="real-hero"><div class="real-hero-copy"><span class="landing-kicker"><i></i> Salud emocional escolar</span><h1>Bienestar que<br><strong>protege la manada</strong></h1><p>Wolves es la primera plataforma gamificada de contencion emocional escolar en tiempo real. Ayudamos a colegios y estudiantes a conectarse, detectar alertas de vulnerabilidad y potenciar habitos saludables mediante tecnologia empatica.</p><div class="landing-actions"><button class="primary-btn guest-student">Probar como alumno</button><button class="ghost-btn guest-mood">Iniciar Mood Check</button><button class="ghost-btn guest-ai">Hablar con Wolf AI</button><button class="ghost-btn scroll-plans">Ver Licencias SaaS</button></div></div><div class="real-hero-art"><img src="${REAL_ASSETS.heroWolf}" alt="Lobo Wolves"></div></section><section class="compare-grid real-compare"><article class="compare-card problem-card"><span>!</span><h2>El Problema</h2><p>La desconexion escolar, el estres por examenes y la rumiacion cognitiva pasan desapercibidos hasta que es tarde. Los colegios carecen de datos en tiempo real y flujos preventivos de apoyo inmediato.</p></article><article class="compare-card solution-card"><span>+</span><h2>La Solucion: Wolves</h2><p>Contencion activa mediante inteligencia artificial empatica, registros diarios de humor, retos interactivos de respiracion y una red blockchain transparente que premia la constancia del alumno y alerta al DECE.</p></article></section><section class="ods-upgrade"><h2>Compromiso ODS de la ONU</h2><div class="section-grid"><article class="card"><h3>ODS 3</h3><p>Salud y Bienestar de los jovenes mediante autorregulacion escolar.</p></article><article class="card"><h3>ODS 4</h3><p>Educacion de Calidad integrando destrezas socioemocionales.</p></article><article class="card"><h3>ODS 9</h3><p>Innovacion educativa con IA, gamificacion y analitica preventiva.</p></article></div></section><section id="planes-saas" class="plans-upgrade"><h2>Modelos de Suscripcion Institucional</h2><div class="plans-grid">${plan('Bronce','$499','Hasta 300 estudiantes',['Alertas basicas del DECE','Wallet de Eight-Coins basicos','Sin chatbot de IA'])}${plan('Plata','$999','Hasta 1000 estudiantes',['Bot Wolf AI activo','Retos mensuales','Libro mayor blockchain visible'],1)}${plan('Oro','$2499','Estudiantes ilimitados',['Avatares NFT personalizables','Soporte DECE 24/7','Descarga completa de reportes CSV'])}</div></section>`;
-    bindLanding();
+  if(typeof e!=='function') return;
+
+  window.pub=function pubVisualWolves(){
+    e('publicView').innerHTML=`
+      <section class="real-hero">
+        <div class="real-hero-copy">
+          <span class="landing-kicker"><i></i> Salud emocional escolar</span>
+          <h1>Bienestar que<br><strong>protege la manada</strong></h1>
+          <p>Wolves es la primera plataforma gamificada de contención emocional escolar en tiempo real. Ayudamos a colegios y estudiantes a conectarse, detectar alertas de vulnerabilidad y potenciar hábitos saludables mediante tecnología empática.</p>
+          <div class="landing-actions">
+            <button class="primary-btn guest-student">Probar como alumno</button>
+            <button class="ghost-btn guest-mood">Iniciar Mood Check</button>
+            <button class="ghost-btn guest-ai">Hablar con Wolf AI</button>
+            <button class="ghost-btn scroll-plans">Ver Licencias SaaS</button>
+          </div>
+        </div>
+        <div class="real-hero-art"><img src="${WOLVES_ASSETS.heroWolf}" alt="Mascota Wolves"></div>
+      </section>
+      <section class="compare-grid real-compare">
+        <article class="compare-card problem-card"><span>⚠</span><h2>El Problema</h2><p>La desconexión escolar, el estrés por exámenes y la rumiación cognitiva pasan desapercibidos hasta que es tarde. Los colegios carecen de datos en tiempo real y flujos preventivos de apoyo inmediato.</p></article>
+        <article class="compare-card solution-card"><span>🛡</span><h2>La Solución: Wolves</h2><p>Contención activa mediante inteligencia artificial empática, registros diarios de humor, retos interactivos de respiración y una red blockchain transparente que premia la constancia del alumno y alerta al DECE.</p></article>
+      </section>
+      <section class="ods-upgrade"><h2>Compromiso ODS de la ONU</h2><div class="section-grid">
+        <article class="card"><h3>ODS 3</h3><p>Salud y Bienestar de los jóvenes mediante autorregulación escolar.</p></article>
+        <article class="card"><h3>ODS 4</h3><p>Educación de Calidad integrando destrezas socioemocionales.</p></article>
+        <article class="card"><h3>ODS 9</h3><p>Innovación educativa con IA, gamificación y analítica preventiva.</p></article>
+      </div></section>
+      <section id="planes-saas" class="plans-upgrade"><h2>Modelos de Suscripción Institucional</h2><div class="plans-grid">
+        ${safePlan('Bronce','$499','Hasta 300 estudiantes',['Alertas básicas del DECE','Wallet de Eight-Coins básicos','Sin chatbot de IA'])}
+        ${safePlan('Plata','$999','Hasta 1000 estudiantes',['Bot Wolf AI activo','Retos mensuales','Libro mayor blockchain visible'],1)}
+        ${safePlan('Oro','$2499','Estudiantes ilimitados',['Avatares NFT personalizables','Soporte DECE 24/7','Descarga completa de reportes CSV'])}
+      </div></section>`;
+    bindVisualLanding();
   };
-  mood=function realMood(){
-    const rows=[['Alegre','Alegre, me siento feliz'],['Tranquilo','Tranquilo'],['Triste','Triste'],['Ansioso','Ansioso'],['Enojado','Enojado']];
-    return `<section class="mood-upgrade real-mood"><div class="mood-title"><h2>Registra tu Emocion Hoy</h2><p>Como te sientes hoy? Cada registro fortalece tu autoconocimiento y te otorga recompensas de la manada.</p></div><div class="emotion-grid real-emotion-grid">${rows.map(([name,text])=>`<button class="choice emotion mood-choice real-emotion-card ${selectedEmotion===name?'active':''}" data-emotion="${name}"><img src="${REAL_ASSETS.moods[name]}" alt="${name}"><strong>${name}</strong><small>"${text}"</small><span class="select-ring"></span></button>`).join('')}</div><article class="card mood-form"><label>Intensidad de la emocion (1 a 5)<input id="moodIntensity" type="range" min="1" max="5" value="3"></label><div class="range-labels"><span>1 - Muy Leve</span><span>2 - Leve</span><span>3 - Moderada</span><span>4 - Fuerte</span><span>5 - Extrema</span></div><label>Comentario explicativo (opcional)<textarea id="moodComment" placeholder="Describe brevemente el motivo escolar o personal de tu emocion..."></textarea></label><button class="primary-btn" id="saveMood">Registrar emocion hoy</button></article><article class="card full streak-card"><h3>Representacion de tu racha de registros de lunes a viernes</h3><div class="school-week">${['Lun','Mar','Mie','Jue','Vie'].map((x,i)=>weekCell(x,i)).join('')}</div><p>Nota de racha escolar: sabado y domingo no se contabilizan. Obtendras <strong>+2 Eight-Coins</strong> por cada registro de lunes a viernes. Completa los 5 dias consecutivos para el super bono de <strong>+10 Eight-Coins</strong>.</p></article></section>`;
+
+  window.mood=function moodVisualWolves(){
+    const rows=[
+      ['Alegre','Alegre, me siento feliz'],
+      ['Tranquilo','Tranquilo'],
+      ['Triste','Triste'],
+      ['Ansioso','Ansioso'],
+      ['Enojado','Enojado']
+    ];
+    return `<section class="mood-upgrade real-mood">
+      <div class="mood-title"><h2>Registra tu Emoción Hoy</h2><p>¿Cómo te sientes hoy? Cada registro fortalece la manada y te acerca a recompensas especiales.</p></div>
+      <div class="emotion-grid real-emotion-grid">
+        ${rows.map(([name,text])=>`<button class="choice emotion mood-choice real-emotion-card ${selectedEmotion===name?'active':''}" data-emotion="${name}"><img src="${WOLVES_ASSETS.moods[name]}" alt="${name}"><strong>${name}</strong><small>${text}</small><span class="select-ring"></span></button>`).join('')}
+      </div>
+      <article class="card mood-form">
+        <label>Intensidad de la emoción (1 a 5)<input id="moodIntensity" type="range" min="1" max="5" value="3"></label>
+        <div class="range-labels"><span>1 - Muy Leve</span><span>2 - Leve</span><span>3 - Moderada</span><span>4 - Fuerte</span><span>5 - Extrema</span></div>
+        <label>Comentario explicativo (opcional)<textarea id="moodComment" placeholder="Describe brevemente el motivo escolar o personal de tu emoción..."></textarea></label>
+        <button class="primary-btn" id="saveMood">Registrar emoción hoy</button>
+      </article>
+      <article class="card full streak-card"><h3>Representación de tu racha de registros de lunes a viernes</h3><div class="school-week">${['Lun','Mar','Mié','Jue','Vie'].map((x,i)=> typeof weekCell==='function'?weekCell(x,i):`<div class="day-cell"><strong>${x}</strong><span>-</span></div>`).join('')}</div><p><strong>Nota de racha escolar:</strong> sábado y domingo no se contabilizan. Obtendrás <strong>+2 Eight-Coins</strong> por cada registro de lunes a viernes. Completa los 5 días consecutivos para el súper bono de <strong>+10 Eight-Coins</strong>.</p></article>
+    </section>`;
   };
-  render();
+
+  if(typeof render==='function') render();
 });
 })();
