@@ -33,15 +33,18 @@
 }
 .real-compare { margin-top: 12px; }
 .real-mood .mood-title { margin-top: -12px; }
-.real-emotion-grid { grid-template-columns: repeat(5, minmax(150px, 1fr)); }
+.real-emotion-grid {
+  grid-template-columns: repeat(5, minmax(160px, 1fr));
+  align-items: stretch;
+}
 .real-emotion-card {
-  min-height: 136px;
+  min-height: 220px;
   display: grid;
   justify-items: center;
   align-content: center;
-  gap: 8px;
+  gap: 10px;
   border-color: rgba(49, 231, 255, .12);
-  background: rgba(8, 18, 42, .82);
+  background: rgba(8, 18, 42, .86);
 }
 .real-emotion-card.active {
   border-color: var(--cyan);
@@ -49,19 +52,29 @@
   box-shadow: 0 0 34px rgba(49, 231, 255, .22);
 }
 .real-emotion-card img {
-  width: 58px;
-  height: 58px;
+  width: 96px;
+  height: 96px;
   object-fit: contain;
   display: block;
   border-radius: 18px;
 }
-.real-emotion-card strong { color: var(--cyan); }
+.real-emotion-card strong {
+  color: var(--cyan);
+  font-size: 18px;
+}
+.real-emotion-card small {
+  min-height: 34px;
+  max-width: 170px;
+  color: #8ea6c8;
+  text-align: center;
+  line-height: 1.35;
+}
 .real-emotion-card[data-emotion="Ansioso"] strong { color: var(--yellow); }
 .real-emotion-card[data-emotion="Enojado"] strong { color: var(--red); }
 .real-emotion-card[data-emotion="Triste"] strong { color: #b66cff; }
 .select-ring {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   border: 2px solid rgba(168, 190, 216, .42);
 }
