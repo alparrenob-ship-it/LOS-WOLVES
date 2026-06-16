@@ -25,6 +25,10 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Copy visual assets into site
+        run: |
+          mkdir -p wolves-mvp/assets
+          cp -R assets/. wolves-mvp/assets/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
