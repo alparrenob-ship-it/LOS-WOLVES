@@ -1,10 +1,8 @@
 # Wolves
 
-![Logo Wolves](assets/ALEGRE.png)
+![Logo Wolves](assets/LOGO.png)
 
 Plataforma Digital de bienestar emocional estudiantil diseñada para fortalecer la prevención, el acompañamiento y el seguimiento emocional dentro de Eight Academy
-
-
 
 # Integrantes
 
@@ -20,18 +18,18 @@ Actualmente muchos estudiantes enfrentan estrés académico, ansiedad, frustraci
 
 Además, las instituciones educativas no siempre cuentan con herramientas tecnológicas innovadoras que permitan dar seguimiento emocional de manera dinámica, preventiva y atractiva para los estudiantes. Esto genera poca participación en actividades de bienestar y limita el acompañamiento emocional oportuno.
 
-# Solución propuesta y cómo funciona
+# Solución propuesta 
 WOLVES es una plataforma digital de bienestar emocional estudiantil que utiliza Inteligencia Artificial y gamificación para ayudar a los estudiantes a identificar, expresar y regular sus emociones. Los usuarios pueden realizar un “Mood Check” diario seleccionando cómo se sienten mediante personajes emocionales tipo lobo, mientras la IA analiza patrones emocionales y recomienda actividades de apoyo, retos de bienestar y ejercicios de autorregulación.
 
-# Solución propuesta
-WOLVES propone una plataforma interactiva donde los estudiantes pueden:
-- Registrar sus emociones diariamente.
-- Recibir recomendaciones mediante IA emocional.
-- Participar en retos de bienestar.
-- Ganar Eight-Coins por actividades positivas.
-- Visualizar su progreso emocional.
-- Fortalecer la empatía y convivencia escolar.
-La plataforma utiliza blockchain para registrar recompensas y logros digitales de forma segura y transparente.
+# Cómo funciona
+| Paso | Proceso |
+|--------|---------|
+| 😊 1 | El estudiante realiza su **Mood Check** diario seleccionando cómo se siente y registrando la intensidad de su emoción. |
+| 🤖 2 | **Wolf AI** analiza los registros emocionales y proporciona recomendaciones, ejercicios de bienestar y apoyo personalizado. |
+| 🚨 3 | Si se detectan patrones de riesgo emocional, el sistema genera **alertas automáticas** para el DECE. |
+| 👨‍⚕️ 4 | El DECE revisa las alertas, realiza seguimiento y agenda intervenciones cuando sea necesario. |
+| 🏆 5 | Los estudiantes completan retos de bienestar y reciben **EightCoins**, insignias y recompensas digitales. |
+| 📊 6 | La institución accede a estadísticas, tendencias emocionales y reportes para fortalecer la toma de decisiones. |
 
 # ODS al que se vincula
 
@@ -43,31 +41,17 @@ La plataforma utiliza blockchain para registrar recompensas y logros digitales d
 
 # Tecnologías que se usarán
 
-## Frontend
-- React.js
-- Tailwind CSS
-
-## Backend
-- Firebase Authentication
-- Firebase Firestore
-
-## Inteligencia Artificial
-- Wolf AI
-- Análisis de patrones emocionales
-- Generación de recomendaciones de bienestar
-
-## Blockchain
-- Registro de logros y recompensas digitales
-
-## Diseño
-- Figma
-- Canva IA
-
-## Hosting
-- Netlify / Vercel
-
-## Control de versiones
-- GitHub
+| Categoría | Tecnología |
+|------------|------------|
+| 🌐 Frontend | HTML5, CSS3, JavaScript |
+| 🔥 Backend | Firebase Authentication |
+| 🗄️ Base de Datos | Firebase Firestore |
+| 🤖 Inteligencia Artificial | Wolf AI |
+| 🪙 Gamificación | EightCoins, Insignias y Retos |
+| 📊 Analítica | Dashboard Emocional y Reportes |
+| 🎨 Diseño UX/UI | Figma, Canva |
+| ☁️ Hosting | Netlify |
+| 🗂️ Control de Versiones | GitHub |
   
 # Funcionalidades Principales
 
@@ -80,6 +64,9 @@ La plataforma utiliza blockchain para registrar recompensas y logros digitales d
 | Panel DECE | Seguimiento emocional |
 | Tienda | Canje de recompensas |
 | Mapa de Calor | Análisis emocional institucional |
+
+# Arquitectura de la plataforma
+![Arquitectura](assets/ARQUITECTURA.png)
 
 # Impacto Esperado
 
