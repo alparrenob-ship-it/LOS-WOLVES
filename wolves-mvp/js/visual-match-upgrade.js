@@ -1,6 +1,6 @@
 (()=>{
 const WOLVES_ASSETS={
-  heroWolf:'../assets/TRANQUILO.png',
+  heroWolf:'../assets/LOBO INICIO.png',
   moods:{
     Alegre:'../assets/ALEGRE.png',
     Tranquilo:'../assets/TRANQUILO.png',
