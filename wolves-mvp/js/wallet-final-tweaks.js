@@ -23,8 +23,14 @@
     S.wallet.unshift({date:today(),type:'Balance demo',amount:DEMO_BALANCE,detail:`Balance institucional inicial: ${fmt.format(DEMO_BALANCE)} EC = $30.00 USD simulados`});
     persist();
   }
+  function addRedeemButton(html){
+    return html.replace(
+      '<div class="wallet-card-chip"></div><small>Equivalencia real demo: 1 EC = $0.01 USD</small>',
+      '<div class="wallet-card-chip"></div><button class="wallet-redeem-now" type="button">Canjear ahora</button><small>Equivalencia real demo: 1 EC = $0.01 USD</small>'
+    );
+  }
   function applyWalletText(html){
-    return html
+    return addRedeemButton(html)
       .replace(/<article class="wallet-level-card tilt-card">[\s\S]*?<\/article>\s*/,'')
       .replace('<section class="wallet-main-grid">','<section class="wallet-main-grid wallet-balance-only">')
       .replace('<section class="wallet-grid-3">','<section class="wallet-grid-3 wallet-two">')
@@ -38,5 +44,12 @@
     seedWalletBalance();
     const html=typeof previousWallet==='function'?previousWallet():'';
     return applyWalletText(html);
+  };
+
+  const previousBind=window.bindStudent;
+  window.bindStudent=function walletRedeemBind(){
+    if(typeof previousBind==='function') previousBind();
+    if(active!=='Wallet') return;
+    document.querySelectorAll('.wallet-redeem-now').forEach(btn=>btn.onclick=()=>{active='Tienda Wolves';render();});
   };
 })();
