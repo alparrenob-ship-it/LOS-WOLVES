@@ -104,4 +104,4 @@ Con nuestra plataforma esperamos:
 /docs/whitepaper V.02.pdf
 
 ### 🖼️ Infografía
-![Infografía](assets/INFOGRAFÍA%RESUMEN%PROYECTO.png)
+![Infografía](assets/INFOGRAFIA.png)
