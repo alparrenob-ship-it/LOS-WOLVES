@@ -1,7 +1,10 @@
 # Wolves
-Plataforma Digital de bienestar emocional estudiantil diseñada para fortalecer la prevención, el acompañamiento y el seguimiento emocional dentro de Eight Academy
 
 ![Logo Wolves](assets/ALEGRE.png)
+
+Plataforma Digital de bienestar emocional estudiantil diseñada para fortalecer la prevención, el acompañamiento y el seguimiento emocional dentro de Eight Academy
+
+
 
 # Integrantes
 
