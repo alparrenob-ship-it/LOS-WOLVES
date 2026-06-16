@@ -26,7 +26,7 @@
   function addRedeemButton(html){
     return html.replace(
       '<div class="wallet-card-top"><span>💰 Balance Actual Real</span><div class="coin-orb">🪙</div></div>',
-      '<div class="wallet-card-top wallet-card-top-final"><span>💰 Balance Actual Real</span><div class="wallet-card-actions"><img class="wallet-mascot-mini" src="assets/MASCOTA.jpeg" alt="Mascota Wolves"><button class="wallet-redeem-now" type="button">Canjear ahora</button></div></div>'
+      '<div class="wallet-card-top wallet-card-top-final"><span>💰 Balance Actual Real</span><div class="wallet-card-actions"><button class="wallet-redeem-now" type="button">Canjear ahora</button><img class="wallet-mascot-mini" src="assets/LOBOWALLET.png" alt="Lobo Wallet Wolves"></div></div>'
     );
   }
   function applyWalletText(html){
