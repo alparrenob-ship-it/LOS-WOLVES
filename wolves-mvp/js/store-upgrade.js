@@ -3,12 +3,12 @@
   const realImage = file => ASSET + file;
 
   const WOLVES_POP = [
-    { name: 'Gorra Wolves Edición Limitada', usd: 18, coins: 800, stock: 25, description: 'Gorra oficial de la manada con logo bordado.', image: realImage('MATERIAL POP GORRA.jpeg') },
-    { name: 'Hoodie Wolves Premium', usd: 38, coins: 2000, stock: 12, description: 'Sudadera oficial de alta calidad con diseño exclusivo Wolves.', image: realImage('MATERIAL POP HOODIE.jpeg') },
-    { name: 'Llavero Lobo Mascota', usd: 6, coins: 300, stock: 40, description: 'Llavero metálico con la mascota oficial de Wolves.', image: realImage('MATERIAL POP LLAVERO.jpeg') },
-    { name: 'Peluche Lobo Wolves', usd: 28, coins: 1200, stock: 18, description: 'Peluche suave de la mascota oficial de la manada.', image: realImage('MATERIAL POP PELUCHE.jpeg') },
-    { name: 'Taza Wolves Manada', usd: 12, coins: 500, stock: 30, description: 'Taza cerámica con identidad Wolves y frases motivacionales.', image: realImage('MATERIAL POP TAZA.jpeg') },
-    { name: 'Agenda Emocional Wolves', usd: 15, coins: 600, stock: 22, description: 'Agenda de bienestar para seguimiento emocional escolar.', image: realImage('MATERIAL POP LLAVERO.jpeg') }
+    { name: 'Hoodie Oficial Wolves', usd: 28, coins: 2800, stock: 12, description: 'Hoodie oficial premium de la manada Wolves.', image: realImage('MATERIAL POP HOODIE.jpeg') },
+    { name: 'Gorra Wolves', usd: 8, coins: 800, stock: 25, description: 'Gorra oficial de la manada con logo bordado.', image: realImage('MATERIAL POP GORRA.jpeg') },
+    { name: 'Taza Wolves', usd: 8, coins: 800, stock: 30, description: 'Taza cerámica con identidad Wolves y frases motivacionales.', image: realImage('MATERIAL POP TAZA.jpeg') },
+    { name: 'Agenda Emocional', usd: 8, coins: 800, stock: 22, description: 'Agenda de bienestar para seguimiento emocional escolar.', image: realImage('MATERIAL POP AGENDA.jpeg') },
+    { name: 'Llavero Wolves', usd: 3, coins: 300, stock: 40, description: 'Llavero metálico con la mascota oficial de Wolves.', image: realImage('MATERIAL POP LLAVERO.jpeg') },
+    { name: 'Peluche de la Manada', usd: 18, coins: 1800, stock: 18, description: 'Peluche suave de la mascota oficial de la manada.', image: realImage('MATERIAL POP PELUCHE.jpeg') }
   ];
 
   window.addEventListener('load', () => {
