@@ -24,6 +24,32 @@ function bindVisualLanding(){
   });
 }
 
+function mondayOf(date){
+  const d=new Date(date);
+  const day=d.getDay()||7;
+  d.setDate(d.getDate()-day+1);
+  d.setHours(0,0,0,0);
+  return d;
+}
+function isoDate(date){return date.toISOString().slice(0,10);}
+function activeUserEmail(){return typeof user==='function'?user().email:S.currentUser;}
+function moodForDay(dayIndex){
+  const start=mondayOf(new Date());
+  const target=new Date(start);
+  target.setDate(start.getDate()+dayIndex);
+  const date=isoDate(target);
+  return (S.moods||[]).filter(m=>m.student===activeUserEmail()&&m.date===date).slice(-1)[0]||null;
+}
+function streakGrid(){
+  const days=['Lun','Mar','Mié','Jue','Vie'];
+  return days.map((day,index)=>{
+    const entry=moodForDay(index);
+    if(!entry)return `<div class="visual-week-cell pending"><strong>${day}</strong><span class="week-dash">-</span></div>`;
+    const img=WOLVES_ASSETS.moods[entry.emotion]||WOLVES_ASSETS.moods.Alegre;
+    return `<div class="visual-week-cell done"><strong>${day}</strong><img src="${img}" alt="${entry.emotion}"><span class="week-check">✓</span></div>`;
+  }).join('');
+}
+
 window.addEventListener('load',()=>{
   if(typeof e!=='function') return;
 
@@ -80,7 +106,11 @@ window.addEventListener('load',()=>{
         <label>Comentario explicativo (opcional)<textarea id="comment" placeholder="Describe brevemente el motivo escolar o personal de tu emoción..."></textarea></label>
         <button class="primary-btn" id="saveMood">Registrar emoción hoy</button>
       </article>
-      <article class="card full streak-card"><h3>Representación de tu racha de registros de lunes a viernes</h3><div class="school-week">${['Lun','Mar','Mié','Jue','Vie'].map((x,i)=> typeof weekCell==='function'?weekCell(x,i):`<div class="day-cell"><strong>${x}</strong><span>-</span></div>`).join('')}</div><p><strong>Nota de racha escolar:</strong> sábado y domingo no se contabilizan. Obtendrás <strong>+2 Eight-Coins</strong> por cada registro de lunes a viernes. Completa los 5 días consecutivos para el súper bono de <strong>+10 Eight-Coins</strong>.</p></article>
+      <article class="card full visual-streak-card">
+        <h3>Representación de tu racha de registros de lunes a viernes</h3>
+        <div class="visual-school-week">${streakGrid()}</div>
+        <div class="streak-note"><strong>⚠ Nota de racha escolar:</strong> Los fines de semana (sábado y domingo) <b>no se contabilizan</b> en la racha de Wolves. Obtendrás <b>+2 Eight-Coins</b> por cada registro diario de Lunes a Viernes. Completa los 5 días consecutivos de la semana para el superbóno de <b>+10 Eight-Coins</b>. Si fallas un solo día escolar, el contador de racha semanal se reinicia automáticamente a 0.</div>
+      </article>
     </section>`;
   };
 
