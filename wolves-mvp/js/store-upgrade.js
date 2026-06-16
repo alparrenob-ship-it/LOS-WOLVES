@@ -26,7 +26,20 @@
       const cartItems = S.cart.map(id => S.products.find(product => product.id === id)).filter(Boolean);
       const totalCoins = cartItems.reduce((sum, product) => sum + product.coins, 0);
       const totalUsd = cartItems.reduce((sum, product) => sum + product.usd, 0);
-      return `<section class="dashboard-grid"><article class="card wide"><div class="store-head"><div><h3>Tienda Wolves</h3><p>Canjea tus Eight-Coins por merchandise oficial de la manada.</p></div><span class="coin">${user().coins.toLocaleString('es-EC')} EC disponibles</span></div><div class="product-grid">${S.products.map(product => `<div class="module product-card"><img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy"><div class="product-body"><h3>${product.name}</h3><p>${product.description}</p><div class="product-meta"><span>$${product.usd} USD</span><span>Stock: ${product.stock}</span></div><p class="coin price">${product.coins.toLocaleString('es-EC')} EC</p><div class="product-actions"><button class="ghost-btn cart" data-id="${product.id}">Agregar al carrito</button><button class="primary-btn buy" data-id="${product.id}">Canjear</button></div></div></div>`).join('')}</div></article><article class="card cart-panel"><h3>Carrito Wolves</h3>${cartItems.map(product => `<p class="pill">${product.name}<br>$${product.usd} USD · ${product.coins.toLocaleString('es-EC')} EC</p>`).join('') || '<p>Carrito vacío.</p>'}<p>Total USD: $${totalUsd}</p><p>Total EC: ${totalCoins.toLocaleString('es-EC')} EC</p><button class="primary-btn checkout-pop">Confirmar carrito</button><button class="ghost-btn clear-pop">Vaciar carrito</button></article></section>`;
+      const cartList = cartItems.length
+        ? `<div class="cart-items-grid">${cartItems.map(product => `<div class="cart-item"><img src="${product.image}" alt="${product.name}"><div><strong>${product.name}</strong><span>$${product.usd} USD · ${product.coins.toLocaleString('es-EC')} EC</span></div></div>`).join('')}</div>`
+        : '<p class="empty-cart">Carrito vacío. Agrega productos Wolves para simular el canje.</p>';
+      return `<section class="store-layout-upgrade">
+        <article class="card store-products-card">
+          <div class="store-head"><div><h3>Tienda Wolves</h3><p>Canjea tus Eight-Coins por merchandise oficial de la manada.</p></div><span class="coin">${user().coins.toLocaleString('es-EC')} EC disponibles</span></div>
+          <div class="product-grid store-expanded-grid">${S.products.map(product => `<div class="module product-card"><img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy"><div class="product-body"><h3>${product.name}</h3><p>${product.description}</p><div class="product-meta"><span>$${product.usd} USD</span><span>${product.coins.toLocaleString('es-EC')} EC</span><span>Stock: ${product.stock}</span></div><div class="product-actions"><button class="ghost-btn cart" data-id="${product.id}">Agregar al carrito</button><button class="primary-btn buy" data-id="${product.id}">Canjear</button></div></div></div>`).join('')}</div>
+        </article>
+        <article class="card cart-panel cart-panel-bottom">
+          <div class="cart-head"><div><h3>Carrito Wolves</h3><p>Revisa tu selección antes de confirmar el canje.</p></div><div class="cart-totals"><span>Total USD: $${totalUsd}</span><span>Total EC: ${totalCoins.toLocaleString('es-EC')} EC</span></div></div>
+          ${cartList}
+          <div class="cart-actions"><button class="primary-btn checkout-pop">Confirmar carrito</button><button class="ghost-btn clear-pop">Vaciar carrito</button></div>
+        </article>
+      </section>`;
     };
 
     const originalBindStudent = window.bindStudent;
