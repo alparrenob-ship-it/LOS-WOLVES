@@ -89,3 +89,19 @@ Con nuestra plataforma esperamos:
 - Fortalecer la salud mental de los estudiantes.
 - Incrementar la participación en actividades de bienestar.
 - Generar una cultura de apoyo y empatía dentro de la comunidad educativa.
+
+# ENTREGABLE 3
+### 🌐 MVP Web
+🔗 [Abrir Plataforma WOLVES](https://alparrenob-ship-it.github.io/LOS-WOLVES/)
+
+### 🎥 Video Demo
+
+
+### 📊 Pitch Deck
+
+
+### 📄 Whitepaper
+/docs/whitepaper V.02.pdf
+
+### 🖼️ Infografía
+/docs/INFOGRAFÍA RESUMEN PROYECTO.png
