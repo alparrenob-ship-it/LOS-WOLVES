@@ -1,107 +1,120 @@
-# Wolves
+# WOLVES
 
-![Logo Wolves](assets/LOGO.png)
+<p align="center">
+  <img src="assets/LOGO.png" alt="Logo WOLVES" width="150">
+</p>
 
-Plataforma digital de bienestar emocional estudiantil diseñada para fortalecer la prevención, el acompañamiento y el seguimiento emocional dentro de Eight Academy.
+<p align="center">
+  <strong>Plataforma digital de bienestar emocional estudiantil para Eight Academy.</strong><br>
+  La tecnología detecta. La comunidad acompaña.
+</p>
 
-# Integrantes
+---
+
+## Integrantes
 
 | Integrante | Rol | Foto |
-|------------|-----|------|
-| Maite Bravo | Líder del Proyecto | ![Maite Bravo](assets/MAITE.png) |
-| Hazel Yánez | Marketing | ![Hazel Yánez](assets/HAZEL.png) |
-| David Palacios | Diseñador y Programador | ![David Palacios](assets/DAVID.png) |
-| Anita Parreño | Mentora | |
+|---|---|---|
+| Maite Bravo | Líder del Proyecto | <img src="assets/MAITE.png" alt="Maite Bravo" width="120"> |
+| Hazel Yánez | Marketing | Foto pendiente de subir como `assets/HAZEL.png` |
+| David Palacios | Diseñador y Programador | <img src="assets/DAVID.png" alt="David Palacios" width="120"> |
+| Anita Parreño | Mentora | Mentora del proyecto |
 
-# Problema que se quiere resolver
+---
 
-Actualmente muchos estudiantes enfrentan estrés académico, ansiedad, frustración, tristeza y dificultades para expresar sus emociones dentro del entorno escolar. En muchas ocasiones, estas emociones pasan desapercibidas, provocando problemas de convivencia, bajo rendimiento académico, desmotivación y afectaciones en la salud emocional de los estudiantes.
+## Problema Que Se Quiere Resolver
 
-Además, las instituciones educativas no siempre cuentan con herramientas tecnológicas innovadoras que permitan dar seguimiento emocional de manera dinámica, preventiva y atractiva para los estudiantes. Esto genera poca participación en actividades de bienestar y limita el acompañamiento emocional oportuno.
+Muchos estudiantes enfrentan estrés académico, ansiedad, frustración, tristeza y dificultades para expresar sus emociones dentro del entorno escolar. En ocasiones estas señales pasan desapercibidas, afectando la convivencia, el rendimiento académico y el bienestar emocional.
 
-# Solución propuesta
+Las instituciones educativas no siempre cuentan con herramientas tecnológicas preventivas, visuales y atractivas para acompañar el estado emocional de los estudiantes en tiempo real.
 
-WOLVES es una plataforma digital de bienestar emocional estudiantil que utiliza Inteligencia Artificial y gamificación para ayudar a los estudiantes a identificar, expresar y regular sus emociones. Los usuarios pueden realizar un “Mood Check” diario seleccionando cómo se sienten mediante personajes emocionales tipo lobo, mientras la IA analiza patrones emocionales y recomienda actividades de apoyo, retos de bienestar y ejercicios de autorregulación.
+## Solución Propuesta
 
-# Cómo funciona
+**WOLVES** es una plataforma gamificada de bienestar emocional estudiantil que integra Mood Check, Wolf AI, retos de bienestar, EightCoins, tienda, blockchain conceptual, panel DECE y administración institucional.
+
+El objetivo es ayudar a los estudiantes a reconocer sus emociones, fortalecer hábitos saludables y activar acompañamiento oportuno cuando sea necesario.
+
+## Cómo Funciona
 
 | Paso | Proceso |
-|------|---------|
-| 1 | El estudiante realiza su **Mood Check** diario seleccionando cómo se siente y registrando la intensidad de su emoción. |
-| 2 | **Wolf AI** analiza los registros emocionales y proporciona recomendaciones, ejercicios de bienestar y apoyo personalizado. |
-| 3 | Si se detectan patrones de riesgo emocional, el sistema genera **alertas automáticas** para el DECE. |
-| 4 | El DECE revisa las alertas, realiza seguimiento y agenda intervenciones cuando sea necesario. |
-| 5 | Los estudiantes completan retos de bienestar y reciben **EightCoins**, insignias y recompensas digitales. |
-| 6 | La institución accede a estadísticas, tendencias emocionales y reportes para fortalecer la toma de decisiones. |
+|---|---|
+| 1 | El estudiante realiza su **Mood Check** diario. |
+| 2 | **Wolf AI** entrega orientación empática y herramientas de apoyo. |
+| 3 | Si se detectan señales de riesgo, se generan alertas para el DECE. |
+| 4 | El DECE revisa alertas, agenda citas y registra seguimiento. |
+| 5 | Los estudiantes completan retos y ganan **EightCoins**. |
+| 6 | La institución visualiza estadísticas para tomar mejores decisiones. |
 
-# ODS al que se vincula
+## ODS Vinculados
 
-| ODS | Nombre | Aplicación en WOLVES |
-|-----|--------|----------------------|
-| 3 | Salud y Bienestar | Promueve el bienestar emocional estudiantil. |
-| 4 | Educación de Calidad | Mejora el acompañamiento educativo. |
-| 9 | Industria, Innovación e Infraestructura | Utiliza IA y tecnología digital. |
+| ODS | Nombre | Aplicación En WOLVES |
+|---|---|---|
+| ODS 3 | Salud y Bienestar | Promueve bienestar emocional y prevención temprana. |
+| ODS 4 | Educación de Calidad | Integra destrezas socioemocionales en el entorno educativo. |
+| ODS 9 | Innovación | Usa tecnología, gamificación y analítica institucional. |
 
-# Tecnologías que se usarán
+## Tecnologías
 
 | Categoría | Tecnología |
-|-----------|------------|
-| 🌐 Frontend | HTML5, CSS3, JavaScript |
-| 🔥 Backend | Firebase Authentication |
-| 🗄️ Base de Datos | Firebase Firestore |
-| 🤖 Inteligencia Artificial | Wolf AI |
-| 🪙 Gamificación | EightCoins, Insignias y Retos |
-| 📊 Analítica | Dashboard Emocional y Reportes |
-| 🎨 Diseño UX/UI | Figma, Canva |
-| ☁️ Hosting | Netlify |
-| 🗂️ Control de Versiones | GitHub |
+|---|---|
+| Frontend | HTML5, CSS3, JavaScript puro |
+| Datos Demo | localStorage |
+| Base de datos preparada | Firebase Firestore |
+| Autenticación preparada | Firebase Authentication |
+| Gamificación | EightCoins, retos, ranking, insignias y tienda |
+| Hosting | GitHub Pages |
+| Control de versiones | GitHub |
 
-# Funcionalidades principales
+## Funcionalidades Principales
 
-| Funcionalidad | Descripción |
-|---------------|-------------|
-| Mood Check | Registro diario de emociones. |
-| Wolf AI | Asistente emocional inteligente. |
-| Retos | Actividades de bienestar. |
-| Wallet | Gestión de EightCoins. |
-| Panel DECE | Seguimiento emocional. |
-| Tienda | Canje de recompensas. |
-| Mapa de Calor | Análisis emocional institucional. |
+| Módulo | Descripción |
+|---|---|
+| Portal Público | Landing institucional con problema, solución, ODS, planes y contacto. |
+| Acceso Institucional | Login y registro por roles. |
+| Panel Estudiante | Perfil RPG, Mood Check, Wolf AI, retos, wallet, tienda y comunidad. |
+| Panel DECE | Alertas, semáforo emocional, citas, fichas y estadísticas. |
+| Panel Administrador | Usuarios, inventario, productos, NFTs, auditoría y configuración. |
+| Wallet | EightCoins, equivalencia USD simulada y solicitudes de recarga al administrador. |
+| Blockchain Explorer | Registro conceptual de retos, logros, recompensas y canjes no sensibles. |
 
-# Arquitectura de la plataforma
-
-## 🔗 Enlaces del Proyecto
-
-### 🎨 Arquitectura en Figma
+## Arquitectura De La Plataforma
 
 [Ver diseño de WOLVES en Figma](https://www.figma.com/make/y3BM2oadM6X2m0E1mzyGiu/Crear-mapa-de-flujo?code-node-id=0-9&p=f&t=ZRqs2MdGvjIjTj3A-0&fullscreen=1)
 
-![Arquitectura](assets/ARQUITECTURA.png)
+<p align="center">
+  <img src="assets/ARQUITECTURA.png" alt="Arquitectura WOLVES" width="760">
+</p>
 
-# Impacto esperado
-
-WOLVES busca transformar la forma en que las instituciones educativas acompañan el bienestar emocional estudiantil.
-
-Con nuestra plataforma esperamos:
+## Impacto Esperado
 
 - Detectar tempranamente situaciones de riesgo emocional.
 - Mejorar la convivencia escolar.
-- Fortalecer la salud mental de los estudiantes.
-- Incrementar la participación en actividades de bienestar.
-- Generar una cultura de apoyo y empatía dentro de la comunidad educativa.
+- Fortalecer la salud mental estudiantil.
+- Incentivar la participación mediante gamificación.
+- Generar datos institucionales útiles sin exponer información sensible.
 
-# ENTREGABLE 3
-### 🌐 MVP Web
-🔗 [Abrir Plataforma WOLVES](https://alparrenob-ship-it.github.io/LOS-WOLVES/)
+---
 
-### 🎥 Video Demo
+## Entregable 3
 
+### MVP Web
 
-### 📊 Pitch Deck
+[Abrir Plataforma WOLVES](https://alparrenob-ship-it.github.io/LOS-WOLVES/)
 
+### Video Demo
 
-### 📄 Whitepaper
-[Ver Whitepaper](docs/WHITEPAPER-WOLVES-V.02.pdf)
+Pendiente de agregar enlace.
 
-### 🖼️ Infografía
-![Infografía](assets/INFOGRAFIA.png)
+### Pitch Deck
+
+Pendiente de agregar enlace.
+
+### Whitepaper
+
+[Ver Whitepaper WOLVES](wolves-mvp/docs/whitepaper.md)
+
+### Infografía
+
+<p align="center">
+  <img src="assets/INFOGRAFIA.png" alt="Infografía WOLVES" width="760">
+</p>
