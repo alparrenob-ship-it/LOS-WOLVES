@@ -1,0 +1,76 @@
+.real-hero {
+  min-height: calc(100vh - 170px);
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, .9fr);
+  align-items: center;
+  gap: 36px;
+  padding: 36px 0 52px;
+}
+.real-hero-copy h1 {
+  margin: 18px 0;
+  font-size: clamp(44px, 6.4vw, 86px);
+  line-height: .98;
+  text-transform: uppercase;
+}
+.real-hero-copy h1 strong { color: var(--cyan); }
+.real-hero-copy p {
+  max-width: 720px;
+  color: #b8d3f4;
+  font-size: 18px;
+}
+.landing-kicker i {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: var(--cyan);
+}
+.real-hero-art { display: grid; place-items: center; }
+.real-hero-art img {
+  width: min(310px, 72vw);
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 28px 70px rgba(49, 231, 255, .22));
+}
+.real-compare { margin-top: 12px; }
+.real-mood .mood-title { margin-top: -12px; }
+.real-emotion-grid { grid-template-columns: repeat(5, minmax(150px, 1fr)); }
+.real-emotion-card {
+  min-height: 136px;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 8px;
+  border-color: rgba(49, 231, 255, .12);
+  background: rgba(8, 18, 42, .82);
+}
+.real-emotion-card.active {
+  border-color: var(--cyan);
+  outline: 2px solid var(--cyan);
+  box-shadow: 0 0 34px rgba(49, 231, 255, .22);
+}
+.real-emotion-card img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+  display: block;
+  border-radius: 18px;
+}
+.real-emotion-card strong { color: var(--cyan); }
+.real-emotion-card[data-emotion="Ansioso"] strong { color: var(--yellow); }
+.real-emotion-card[data-emotion="Enojado"] strong { color: var(--red); }
+.real-emotion-card[data-emotion="Triste"] strong { color: #b66cff; }
+.select-ring {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid rgba(168, 190, 216, .42);
+}
+.real-emotion-card.active .select-ring {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px rgba(49, 231, 255, .7);
+}
+@media (max-width: 980px) {
+  .real-hero,
+  .real-emotion-grid { grid-template-columns: 1fr; }
+}
