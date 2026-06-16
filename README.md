@@ -5,7 +5,8 @@
 </p>
 
 <p align="center">
-  <strong>Plataforma digital de bienestar emocional estudiantil para Eight Academy.</strong><br>
+  <strong>Plataforma Digital de bienestar emocional estudiantil diseñada para fortalecer la prevención, el acompañamiento y el seguimiento emocional dentro de Eight Academy
+.</strong><br>
   La tecnología detecta. La comunidad acompaña.
 </p>
 
@@ -16,7 +17,7 @@
 | Integrante | Rol | Foto |
 |---|---|---|
 | Maite Bravo | Líder del Proyecto | <img src="assets/MAITE.png" alt="Maite Bravo" width="120"> |
-| Hazel Yánez | Marketing | Foto pendiente de subir como `assets/HAZEL.png` |
+| Hazel Yánez | Marketing | <img src="assets/HAZEL.png" alt="Hazel Yánez" width="120"> |
 | David Palacios | Diseñador y Programador | <img src="assets/DAVID.png" alt="David Palacios" width="120"> |
 | Anita Parreño | Mentora | Mentora del proyecto |
 
