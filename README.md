@@ -8,9 +8,9 @@ Plataforma Digital de bienestar emocional estudiantil diseñada para fortalecer 
 
 | Integrante | Rol |
 |------------|-----|
-| Maite Bravo | Líder del Proyecto |
-| Hazel Yánez | Marketing |
-| David Palacios | Diseñador y Programador |
+| Maite Bravo | Líder del Proyecto | ![Logo Wolves](assets/MAITE.png) |
+| Hazel Yánez | Marketing | ![Logo Wolves](assets/HAZEL.png) |
+| David Palacios | Diseñador y Programador | ![Logo Wolves](assets/DAVID.png)  |
 | Anita Parreño | Mentora |
 
 # Problema que se quiere resolver
@@ -24,12 +24,12 @@ WOLVES es una plataforma digital de bienestar emocional estudiantil que utiliza 
 # Cómo funciona
 | Paso | Proceso |
 |--------|---------|
-| 😊 1 | El estudiante realiza su **Mood Check** diario seleccionando cómo se siente y registrando la intensidad de su emoción. |
-| 🤖 2 | **Wolf AI** analiza los registros emocionales y proporciona recomendaciones, ejercicios de bienestar y apoyo personalizado. |
-| 🚨 3 | Si se detectan patrones de riesgo emocional, el sistema genera **alertas automáticas** para el DECE. |
-| 👨‍⚕️ 4 | El DECE revisa las alertas, realiza seguimiento y agenda intervenciones cuando sea necesario. |
-| 🏆 5 | Los estudiantes completan retos de bienestar y reciben **EightCoins**, insignias y recompensas digitales. |
-| 📊 6 | La institución accede a estadísticas, tendencias emocionales y reportes para fortalecer la toma de decisiones. |
+| 1 | El estudiante realiza su **Mood Check** diario seleccionando cómo se siente y registrando la intensidad de su emoción. |
+| 2 | **Wolf AI** analiza los registros emocionales y proporciona recomendaciones, ejercicios de bienestar y apoyo personalizado. |
+| 3 | Si se detectan patrones de riesgo emocional, el sistema genera **alertas automáticas** para el DECE. |
+| 4 | El DECE revisa las alertas, realiza seguimiento y agenda intervenciones cuando sea necesario. |
+| 5 | Los estudiantes completan retos de bienestar y reciben **EightCoins**, insignias y recompensas digitales. |
+| 6 | La institución accede a estadísticas, tendencias emocionales y reportes para fortalecer la toma de decisiones. |
 
 # ODS al que se vincula
 
