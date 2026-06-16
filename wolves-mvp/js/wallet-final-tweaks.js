@@ -26,11 +26,20 @@
   function addRedeemButton(html){
     return html.replace(
       '<div class="wallet-card-top"><span>💰 Balance Actual Real</span><div class="coin-orb">🪙</div></div>',
-      '<div class="wallet-card-top wallet-card-top-final"><span>💰 Balance Actual Real</span><div class="wallet-card-actions"><button class="wallet-redeem-now" type="button">Canjear ahora</button><img class="wallet-mascot-mini" src="assets/LOBOWALLET.png" alt="Lobo Wallet Wolves"></div></div>'
+      '<div class="wallet-card-top wallet-card-top-final"><span>💰 Balance Actual Real</span><div class="wallet-card-actions wallet-redeem-stack"><button class="wallet-redeem-now" type="button">Canjear ahora</button><div class="wallet-lobo-frame"><img class="wallet-lobo-img" src="assets/LOBOWALLET.png" alt="Lobo Wallet Wolves"></div></div></div>'
+    );
+  }
+  function addStreakMascot(html){
+    return html.replace(
+      '<article class="wallet-panel streak-card"><h3>🔥 Racha Actual</h3>',
+      '<article class="wallet-panel streak-card streak-card-wolves"><img class="streak-heart-mascot" src="assets/MASCOTA CORAZÓN.png" alt="Mascota corazón Wolves"><div class="streak-content"><h3>🔥 Racha Actual</h3>'
+    ).replace(
+      '</div></article><article class="wallet-panel reward-card">',
+      '</div></div></article><article class="wallet-panel reward-card">'
     );
   }
   function applyWalletText(html){
-    return addRedeemButton(html)
+    return addStreakMascot(addRedeemButton(html))
       .replace(/<article class="wallet-level-card tilt-card">[\s\S]*?<\/article>\s*/,'')
       .replace('<section class="wallet-main-grid">','<section class="wallet-main-grid wallet-balance-only">')
       .replace('<section class="wallet-grid-3">','<section class="wallet-grid-3 wallet-two">')
