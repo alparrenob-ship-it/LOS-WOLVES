@@ -160,6 +160,99 @@
   gap: 12px;
   margin-top: 18px;
 }
+.pickup-modal {
+  width: min(820px, 94vw);
+  border: 1px solid rgba(49, 231, 255, .38);
+  border-radius: 18px;
+  background: #08142e;
+  color: var(--text);
+  box-shadow: 0 28px 90px rgba(0,0,0,.58);
+}
+.pickup-modal::backdrop {
+  background: rgba(0, 6, 18, .74);
+  backdrop-filter: blur(7px);
+}
+.pickup-summary {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.pickup-summary > div,
+.pickup-info,
+.pickup-ticket {
+  border: 1px solid rgba(49, 231, 255, .18);
+  border-radius: 14px;
+  background: rgba(2, 10, 24, .62);
+  padding: 14px;
+}
+.pickup-summary b,
+.pickup-summary span {
+  display: block;
+  color: #9fb7d8;
+}
+.pickup-summary strong {
+  display: block;
+  margin: 8px 0;
+  color: #ffd76d;
+  font-size: 28px;
+}
+.pickup-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.pickup-form .full {
+  grid-column: 1 / -1;
+}
+.pickup-form input,
+.pickup-form textarea {
+  background: rgba(2,10,24,.72);
+}
+.pickup-info {
+  color: #cfe4ff;
+}
+.pickup-info strong {
+  color: var(--cyan);
+}
+.pickup-success {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  text-align: center;
+  padding: 18px 6px 8px;
+}
+.pickup-success > span {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #35e48f, #31e7ff);
+  color: #031020;
+  font-size: 38px;
+  font-weight: 900;
+  box-shadow: 0 0 36px rgba(49,231,255,.25);
+}
+.pickup-success h2 {
+  margin: 0;
+}
+.pickup-success > strong {
+  padding: 14px 22px;
+  border: 1px dashed rgba(255, 209, 102, .75);
+  border-radius: 14px;
+  color: #ffd76d;
+  background: rgba(255, 209, 102, .08);
+  font-size: clamp(28px, 5vw, 44px);
+  letter-spacing: 3px;
+}
+.pickup-ticket {
+  width: 100%;
+  text-align: left;
+}
+.pickup-ticket p {
+  margin: 7px 0;
+}
 @media (max-width: 1100px) {
   .store-expanded-grid,
   .cart-items-grid { grid-template-columns: repeat(2, minmax(220px, 1fr)); }
@@ -170,6 +263,8 @@
   .store-expanded-grid,
   .cart-items-grid,
   .product-actions,
-  .cart-actions { grid-template-columns: 1fr; }
+  .cart-actions,
+  .pickup-summary,
+  .pickup-form { grid-template-columns: 1fr; }
   .product-card { min-height: auto; }
 }
