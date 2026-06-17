@@ -210,6 +210,29 @@
   font-weight: 800;
   font-size: 13px;
 }
+.pickup-process-image {
+  margin: 16px 0 20px;
+  border: 1px solid rgba(49, 231, 255, .22);
+  border-radius: 18px;
+  background: radial-gradient(circle at 50% 20%, rgba(49,231,255,.12), rgba(2,10,24,.72) 62%);
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 16px 34px rgba(0,0,0,.24);
+}
+.pickup-process-image img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+  display: block;
+  padding: 14px;
+}
+.pickup-process-image figcaption {
+  margin: 0;
+  padding: 11px 14px 13px;
+  border-top: 1px solid rgba(49,231,255,.14);
+  color: #a9c1e4;
+  font-size: 13px;
+  text-align: center;
+}
 .pickup-inline-form,
 .pickup-form {
   display: grid;
@@ -327,4 +350,5 @@
   .pickup-inline-form,
   .pickup-steps { grid-template-columns: 1fr; }
   .product-card { min-height: auto; }
+  .pickup-process-image img { max-height: 240px; padding: 10px; }
 }
