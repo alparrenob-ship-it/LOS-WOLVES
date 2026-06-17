@@ -3,7 +3,7 @@
   const STEPS=[
     {n:1,title:'Acción positiva',short:'El alumno completa un reto, gana un logro o realiza un canje.',img:`${ASSET}CONTROLALAANSIEDAD.png`,tag:'Reto o canje'},
     {n:2,title:'Constancia segura',short:'Wolves crea una constancia pública sin guardar emociones ni comentarios.',img:`${ASSET}LOBOWALLET.png`,tag:'Registro limpio'},
-    {n:3,title:'Firma SHA-256',short:'La acción se transforma en un hash para comprobar que no fue alterada.',img:`${ASSET}LOGO.png`,tag:'Criptografía'},
+    {n:3,title:'Firma SHA-256',short:'La acción se transforma en un hash para comprobar que no fue alterada.',img:`${ASSET}BLOCKCHAIN.png`,tag:'Criptografía'},
     {n:4,title:'Libro Mayor',short:'El bloque queda unido al anterior como una cadena de evidencias.',img:`${ASSET}MASCOTA BRAZOS CRUZADOS.png`,tag:'Bloque protegido'}
   ];
   const PRIVACY=[
@@ -43,7 +43,7 @@
   function latestBlock(){
     const list=chainList();
     if(!list.length){
-      return `<div class="bc-current-empty"><img src="${ASSET}LOGO.png" alt="Logo Wolves"><h3>Aún no hay bloques generados</h3><p>Usa el botón de demostración para ver cómo Wolves registra una constancia sin exponer información emocional.</p></div>`;
+      return `<div class="bc-current-empty"><img src="${ASSET}BLOCKCHAIN.png" alt="Blockchain Wolves"><h3>Aún no hay bloques generados</h3><p>Usa el botón de demostración para ver cómo Wolves registra una constancia sin exponer información emocional.</p></div>`;
     }
     const block=list[0];
     const visual=blockVisual(block.action);
@@ -68,7 +68,7 @@
     return `<section class="bc-shell">
       <article class="bc-hero-card">
         <div class="bc-hero-copy"><span class="bc-kicker">Blockchain conceptual Wolves</span><h2>Un libro de constancias, no un archivo de emociones</h2><p>Wolves usa la blockchain como una bitácora educativa: registra acciones positivas verificables, protege la privacidad y ayuda a demostrar progreso sin exponer información sensible.</p><div class="bc-hero-actions"><button class="bc-demo-btn" id="bcDemoBlock">Generar bloque demo</button><span>${count} bloques creados</span></div></div>
-        <div class="bc-hero-visual"><img src="${ASSET}MASCOTA BRAZOS CRUZADOS.png" alt="Mascota Wolves protegiendo datos"><div><b>Privacidad primero</b><small>Sin emociones ni comentarios personales</small></div></div>
+        <div class="bc-hero-visual"><img src="${ASSET}BLOCKCHAIN.png" alt="Blockchain Wolves"><div><b>Privacidad primero</b><small>Sin emociones ni comentarios personales</small></div></div>
       </article>
       <article class="bc-flow-card">
         <div class="bc-section-head"><div><span>Explicación rápida</span><h2>Así funciona en 4 pasos</h2></div></div>
