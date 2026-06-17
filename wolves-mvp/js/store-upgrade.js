@@ -12,7 +12,7 @@
   ];
 
   function processImage(){
-    return `<figure class="pickup-process-image"><img src="${realImage('PROCESO COMPRA.png')}" alt="Proceso de compra y retiro Wolves"><figcaption>Flujo visual: selecciona, confirma, genera código WLV y retira en recepción.</figcaption></figure>`;
+    return `<figure class="pickup-process-image"><img src="${realImage('COMPRA WOLVES.png')}" alt="Compra Wolves y retiro en recepción"><figcaption>Flujo visual: selecciona, confirma, genera código WLV y retira en recepción.</figcaption></figure>`;
   }
 
   function pickupInline(cartItems,totalCoins,totalUsd){
