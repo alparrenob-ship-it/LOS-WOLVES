@@ -59,10 +59,10 @@ function publicLanding(){
 
       <section class="landing-final-section" data-section="ods">
         <h2 class="section-title-final">Compromiso ODS</h2>
-        <div class="final-grid-3">
-          <article class="landing-info-card"><h3>ODS 3</h3><p>Salud y Bienestar de los jovenes con autorregulacion, apoyo preventivo y deteccion temprana.</p></article>
-          <article class="landing-info-card"><h3>ODS 4</h3><p>Educacion de Calidad con destrezas socioemocionales integradas al entorno escolar.</p></article>
-          <article class="landing-info-card"><h3>ODS 9</h3><p>Innovacion educativa con IA, gamificacion, datos y blockchain conceptual responsable.</p></article>
+        <div class="final-grid-3 ods-grid-final">
+          <article class="landing-info-card ods-card-final"><img class="ods-icon-final" src="assets/ODS3.png" alt="ODS 3 Salud y Bienestar"><h3>ODS 3</h3><p>Salud y Bienestar de los jovenes con autorregulacion, apoyo preventivo y deteccion temprana.</p></article>
+          <article class="landing-info-card ods-card-final"><img class="ods-icon-final" src="assets/ODS4.png" alt="ODS 4 Educacion de Calidad"><h3>ODS 4</h3><p>Educacion de Calidad con destrezas socioemocionales integradas al entorno escolar.</p></article>
+          <article class="landing-info-card ods-card-final"><img class="ods-icon-final" src="assets/ODS9.jpg" alt="ODS 9 Innovacion"><h3>ODS 9</h3><p>Innovacion educativa con IA, gamificacion, datos y blockchain conceptual responsable.</p></article>
         </div>
       </section>
 
