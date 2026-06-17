@@ -1,14 +1,18 @@
 (()=>{
   const ASSET='assets/';
   const STEPS=[
-    {n:1,title:'Registro',text:'El estudiante completa un reto saludable o canjea un objeto meritorio.',icon:'registro',img:`${ASSET}CONTROLALAANSIEDAD.png`,alt:'Reto saludable Wolves'},
-    {n:2,title:'Transacción',text:'La red genera una transacción transparente para ser firmada.',icon:'transaccion',img:`${ASSET}LOBOWALLET.png`,alt:'Wallet Wolves con EightCoins'},
-    {n:3,title:'Criptografía',text:'La acción se firma con SHA-256 y se liga al bloque anterior.',icon:'cripto',img:`${ASSET}LOGO.png`,alt:'Logo oficial Wolves'},
-    {n:4,title:'Bloque',text:'La constancia queda inmutable en el Libro Mayor sin guardar datos sensibles.',icon:'bloque',img:`${ASSET}MASCOTA BRAZOS CRUZADOS.png`,alt:'Mascota Wolves protegiendo la información'}
+    {n:1,title:'Acción positiva',short:'El alumno completa un reto, gana un logro o realiza un canje.',img:`${ASSET}CONTROLALAANSIEDAD.png`,tag:'Reto o canje'},
+    {n:2,title:'Constancia segura',short:'Wolves crea una constancia pública sin guardar emociones ni comentarios.',img:`${ASSET}LOBOWALLET.png`,tag:'Registro limpio'},
+    {n:3,title:'Firma SHA-256',short:'La acción se transforma en un hash para comprobar que no fue alterada.',img:`${ASSET}LOGO.png`,tag:'Criptografía'},
+    {n:4,title:'Libro Mayor',short:'El bloque queda unido al anterior como una cadena de evidencias.',img:`${ASSET}MASCOTA BRAZOS CRUZADOS.png`,tag:'Bloque protegido'}
+  ];
+  const PRIVACY=[
+    {label:'Sí se registra',items:['Retos completados','Canjes de tienda','Logros y recompensas','Fecha y bloque']},
+    {label:'No se registra',items:['Emociones privadas','Comentarios personales','Mensajes de Wolf AI','Datos sensibles del estudiante']}
   ];
   function saveState(){if(typeof save==='function')save();}
   function notify(t){if(typeof toast==='function')toast(t);}
-  function shortHash(hash){return hash?`${hash.slice(0,16)}...${hash.slice(-8)}`:'Pendiente';}
+  function shortHash(hash){return hash?`${hash.slice(0,14)}...${hash.slice(-8)}`:'Pendiente';}
   function now(){return new Date().toLocaleString('es-EC');}
   function chainList(){S.chain=Array.isArray(S.chain)?S.chain:[];return S.chain;}
   async function makeHash(text){
@@ -29,39 +33,55 @@
     notify('Bloque demo agregado al Libro Mayor Wolves');
     render();
   }
-  function stepIcon(type){
-    const map={registro:'✍️',transaccion:'🔁',cripto:'🔐',bloque:'🧱'};
-    return map[type]||'◇';
-  }
   function blockVisual(action=''){
     const text=action.toLowerCase();
-    if(text.includes('canje'))return {img:`${ASSET}MATERIAL POP TAZA.jpeg`,alt:'Canje Wolves registrado'};
-    if(text.includes('logro'))return {img:`${ASSET}NFT LOBO CAPUCHA.jpeg`,alt:'NFT de logro Wolves'};
-    if(text.includes('recompensa'))return {img:`${ASSET}MASCOTA CORAZÓN.png`,alt:'Recompensa de bienestar Wolves'};
-    return {img:`${ASSET}RESPIRA Y RELÁJATE.png`,alt:'Reto completado Wolves'};
+    if(text.includes('canje'))return {img:`${ASSET}MATERIAL POP TAZA.jpeg`,label:'Canje validado',type:'store'};
+    if(text.includes('logro'))return {img:`${ASSET}NFT LOBO CAPUCHA.jpeg`,label:'Logro validado',type:'achievement'};
+    if(text.includes('recompensa'))return {img:`${ASSET}MASCOTA CORAZÓN.png`,label:'Recompensa validada',type:'reward'};
+    return {img:`${ASSET}RESPIRA Y RELÁJATE.png`,label:'Reto validado',type:'challenge'};
+  }
+  function latestBlock(){
+    const list=chainList();
+    if(!list.length){
+      return `<div class="bc-current-empty"><img src="${ASSET}LOGO.png" alt="Logo Wolves"><h3>Aún no hay bloques generados</h3><p>Usa el botón de demostración para ver cómo Wolves registra una constancia sin exponer información emocional.</p></div>`;
+    }
+    const block=list[0];
+    const visual=blockVisual(block.action);
+    return `<article class="bc-current-block">
+      <div class="bc-current-media"><img src="${visual.img}" alt="${visual.label}"><span>${visual.label}</span></div>
+      <div class="bc-current-info"><small>Último bloque generado</small><h3>Bloque #${block.number}</h3><p>${block.action}</p><dl><div><dt>Fecha</dt><dd>${block.date}</dd></div><div><dt>Hash SHA-256</dt><dd>${shortHash(block.hash)}</dd></div><div><dt>Bloque anterior</dt><dd>${shortHash(block.previous)}</dd></div></dl></div>
+    </article>`;
   }
   function rows(){
     const list=chainList();
     if(!list.length){
-      return `<div class="bc-empty-row"><div class="bc-empty-visual"><img src="${ASSET}LOGO.png" alt="Logo Wolves"></div><p>No se han registrado bloques en la bitácora todavía.</p><small>Presiona “Generar bloque demo” para visualizar un ejemplo sin guardar emociones ni datos privados.</small></div>`;
+      return `<div class="bc-empty-ledger"><span>Libro Mayor en espera</span><p>No hay bloques en la bitácora todavía.</p></div>`;
     }
-    return list.map(block=>{const visual=blockVisual(block.action);return `<article class="bc-block-card">
-      <div class="bc-block-number"><span>#${block.number}</span><small>Bloque</small></div>
-      <div class="bc-block-main"><h3>${block.action}</h3><p>${block.date}</p><div class="bc-hash-line"><b>SHA-256</b><code>${shortHash(block.hash)}</code></div><div class="bc-hash-line muted"><b>Anterior</b><code>${shortHash(block.previous)}</code></div></div>
-      <div class="bc-image-slot"><img src="${visual.img}" alt="${visual.alt}"><span>Constancia visual</span></div>
+    return list.map(block=>{const visual=blockVisual(block.action);return `<article class="bc-ledger-item">
+      <div class="bc-ledger-img"><img src="${visual.img}" alt="${visual.label}"></div>
+      <div class="bc-ledger-main"><div><b>#${block.number}</b><span>${visual.label}</span></div><h3>${block.action}</h3><p>${block.date}</p></div>
+      <div class="bc-ledger-hash"><small>SHA-256</small><code>${shortHash(block.hash)}</code></div>
     </article>`}).join('');
   }
   window.chain=function blockchainExplorerUpgrade(){
     const count=chainList().length;
     return `<section class="bc-shell">
-      <article class="bc-how-card">
-        <div class="bc-section-head"><div><span>¿Cómo funciona la blockchain de Wolves?</span><h2>Privacidad, constancia y recompensas claras</h2></div><button class="bc-demo-btn" id="bcDemoBlock">Generar bloque demo</button></div>
-        <div class="bc-step-grid">${STEPS.map(step=>`<div class="bc-step-card"><div class="bc-img-placeholder"><img src="${step.img}" alt="${step.alt}"><span>${stepIcon(step.icon)}</span></div><h3>${step.n}. ${step.title}</h3><p>${step.text}</p></div>`).join('')}</div>
+      <article class="bc-hero-card">
+        <div class="bc-hero-copy"><span class="bc-kicker">Blockchain conceptual Wolves</span><h2>Un libro de constancias, no un archivo de emociones</h2><p>Wolves usa la blockchain como una bitácora educativa: registra acciones positivas verificables, protege la privacidad y ayuda a demostrar progreso sin exponer información sensible.</p><div class="bc-hero-actions"><button class="bc-demo-btn" id="bcDemoBlock">Generar bloque demo</button><span>${count} bloques creados</span></div></div>
+        <div class="bc-hero-visual"><img src="${ASSET}MASCOTA BRAZOS CRUZADOS.png" alt="Mascota Wolves protegiendo datos"><div><b>Privacidad primero</b><small>Sin emociones ni comentarios personales</small></div></div>
+      </article>
+      <article class="bc-flow-card">
+        <div class="bc-section-head"><div><span>Explicación rápida</span><h2>Así funciona en 4 pasos</h2></div></div>
+        <div class="bc-step-grid">${STEPS.map(step=>`<div class="bc-step-card"><div class="bc-step-number">${step.n}</div><div class="bc-img-placeholder"><img src="${step.img}" alt="${step.title}"><span>${step.tag}</span></div><h3>${step.title}</h3><p>${step.short}</p></div>`).join('')}</div>
+      </article>
+      <section class="bc-privacy-grid">${PRIVACY.map((box,i)=>`<article class="bc-privacy-card ${i?'danger':'safe'}"><h3>${box.label}</h3><ul>${box.items.map(item=>`<li>${item}</li>`).join('')}</ul></article>`).join('')}</section>
+      <article class="bc-live-card">
+        <div class="bc-explorer-head"><div><span class="bc-kicker">Explorer visual</span><h2>Última constancia del Libro Mayor</h2><p>Cada bloque muestra una acción meritoria, su fecha y una firma SHA-256 conceptual.</p></div><span class="bc-status">Libro Mayor Activo</span></div>
+        ${latestBlock()}
       </article>
       <article class="bc-explorer-card">
-        <div class="bc-explorer-head"><div><h2>Wolves Blockchain Explorer</h2><p>Se registran retos superados, logros, recompensas y canjes. Nunca emociones, comentarios personales ni información sensible.</p></div><span class="bc-status">Libro Mayor Activo</span></div>
-        <div class="bc-summary-grid"><div><b>${count}</b><span>Bloques</span></div><div><b>SHA-256</b><span>Firma conceptual</span></div><div><b>Privado</b><span>Sin datos emocionales</span></div></div>
-        <div class="bc-table-head"><span>Bloque</span><span>Descripción meritoria</span><span>Hash criptográfico</span></div>
+        <div class="bc-explorer-head"><div><h2>Historial de bloques Wolves</h2><p>Solo se registran retos superados, logros, recompensas y canjes. La privacidad emocional permanece protegida.</p></div></div>
+        <div class="bc-summary-grid"><div><b>${count}</b><span>Bloques</span></div><div><b>SHA-256</b><span>Firma conceptual</span></div><div><b>0</b><span>Datos sensibles</span></div></div>
         <div class="bc-block-list">${rows()}</div>
       </article>
     </section>`;
