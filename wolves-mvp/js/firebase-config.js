@@ -1,5 +1,5 @@
 window.WOLVES_FIREBASE_CONFIG = {
-  apiKey: "AIzaSyCzN1iILJX04B1nPMgFsymE05_2eYou4",
+  apiKey: "AIzaSyCzN1iIJX04B1nPMgFsymEQ5_-2eYou4",
   authDomain: "wolves-mvp-eight.firebaseapp.com",
   projectId: "wolves-mvp-eight",
   storageBucket: "wolves-mvp-eight.firebasestorage.app",
