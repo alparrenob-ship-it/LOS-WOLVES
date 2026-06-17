@@ -6,6 +6,12 @@
     listen:'assets/ESCUCHAACTIVA.png',
     heart:'assets/MASCOTA CORAZÓN.png'
   };
+  const NFT_REWARDS=[
+    {name:'NFT Lobo Capucha',img:'assets/NFT LOBO CAPUCHA.jpeg'},
+    {name:'NFT Loba Capucha',img:'assets/NFT LOBA CAPUCHA.png'},
+    {name:'NFT Lobo con Gafas',img:'assets/NFT LOBO CON GAFAS.png'},
+    {name:'NFT Loba con Gafas',img:'assets/NFT LOBA CON GAFAS.png'}
+  ];
   const CHALLENGES=[
     {id:'respiracion-478',name:'Respiración Controlada 4-7-8',points:25,img:IMG.breathe,description:'Fases para inhalar, retener y exhalar aire profundamente con una esfera que pulsa rítmicamente.',type:'breathing'},
     {id:'controla-ansiedad',name:'Controla la Ansiedad',points:30,img:IMG.anxiety,description:'Técnica visual para reconocer tensión corporal y recuperar sensación de control.',type:'grounding',fields:[['ves','5 cosas que ves'],['tocas','4 cosas que puedes tocar'],['escuchas','3 cosas que escuchas'],['hueles','2 cosas que hueles'],['saboreas','1 cosa que saboreas']]},
@@ -26,7 +32,8 @@
   function mergedProgress(){return CHALLENGES.reduce((acc,ch)=>{acc[ch.id]={...baseProgress(ch),...(state.progress[ch.id]||{})};return acc;},{});}
   function saveLocal(){localStorage.setItem(localKey(),JSON.stringify(state.progress));}
   function loadLocal(){try{state.progress=JSON.parse(localStorage.getItem(localKey())||'{}')||{};}catch{state.progress={};}}
-  function syncCoins(){const u=currentUser();u.eightCoins=u.coins||u.eightCoins||0;u.retosCompletados=Object.values(state.progress).filter(r=>r.completado).length;saveApp();}
+  function completedCount(){return Object.values(mergedProgress()).filter(r=>r.estado==='completed'||r.completado).length;}
+  function syncCoins(){const u=currentUser();u.eightCoins=u.coins||u.eightCoins||0;u.retosCompletados=completedCount();if(completedCount()>=5){u.nftUnlocked=true;S.nfts=(S.nfts||[]).map(n=>({...n,unlocked:true}));}saveApp();}
 
   async function fb(){return window.WolvesFirebase?await window.WolvesFirebase.ready():{enabled:false};}
   async function saveRemoteChallenge(challengeId){
@@ -36,7 +43,7 @@
     const u=currentUser();
     const userRef=doc(ctx.db,'users',ctx.auth.currentUser.uid);
     const retoRef=doc(ctx.db,'users',ctx.auth.currentUser.uid,'retos',challengeId);
-    await setDoc(userRef,{uid:ctx.auth.currentUser.uid,nombre:u.name||u.profileName||'Estudiante Wolves',curso:u.grade||'Demo',eightCoins:u.coins||0,retosCompletados:Object.values(state.progress).filter(r=>r.completado).length,racha:u.racha||0,updatedAt:serverTimestamp()},{merge:true});
+    await setDoc(userRef,{uid:ctx.auth.currentUser.uid,nombre:u.name||u.profileName||'Estudiante Wolves',curso:u.grade||'Demo',eightCoins:u.coins||0,retosCompletados:completedCount(),racha:u.racha||0,updatedAt:serverTimestamp()},{merge:true});
     await setDoc(retoRef,{...state.progress[challengeId],updatedAt:serverTimestamp()},{merge:true});
   }
   async function loadRemote(){
@@ -64,11 +71,15 @@
 
   function badgeLabel(status){return status==='completed'?'Completado':status==='in_progress'?'En progreso':'Pendiente';}
   function challengeCard(ch,p){return `<article class="fc-card ${p.estado}"><span class="fc-badge ${p.estado}">${badgeLabel(p.estado)}</span><img src="${ch.img}" alt="${ch.name}"><h3>${ch.name}</h3><p>${ch.description}</p><button class="primary-btn fc-open-challenge" data-id="${ch.id}">${p.estado==='completed'?'Ver reto':'Ejecutar reto'}</button></article>`;}
+  function rewardSection(done){
+    const unlocked=done>=5;
+    return `<article class="card full fc-reward fc-library-bonus"><span>Bono de temporada</span><h2>Recompensa por Completar la Biblioteca</h2><p>Para incentivar hábitos estables, completa los 5 retos de la temporada. Desbloquearás el Súper Bono de <strong>+200 Eight-Coins</strong> y podrás canjear accesorios NFT exclusivos en tu perfil.</p><div class="library-progress"><span style="width:${Math.min(100,done*20)}%"></span></div><small>Progreso: ${done} de 5 retos completados</small></article><article class="card full fc-nft-rewards"><div class="fc-nft-head"><div><h2>NFTs que puedes desbloquear</h2><p>Al completar los 5 retos, estos accesorios se liberan para probar y equipar en tu Perfil RPG.</p></div><span class="season-chip ${unlocked?'unlocked':''}">${unlocked?'Desbloqueados':'Bloqueados'}</span></div><div class="fc-nft-grid">${NFT_REWARDS.map(n=>`<article class="fc-nft-card ${unlocked?'unlocked':'locked'}"><img src="${n.img}" alt="${n.name}"><strong>${n.name}</strong><small>${unlocked?'Disponible para equipar':'Completa 5 retos para desbloquear'}</small><div class="fc-nft-actions"><button class="ghost-btn fc-preview-nft" data-nft="${n.name}" data-img="${n.img}">Probar</button><button class="primary-btn fc-equip-nft" data-nft="${n.name}" data-img="${n.img}" ${unlocked?'':'disabled'}>Equipar</button></div></article>`).join('')}</div></article>`;
+  }
   function challengesView(){
     const progress=mergedProgress();
     const done=Object.values(progress).filter(p=>p.estado==='completed').length;
-    const coins=CHALLENGES.reduce((sum,ch)=>sum+(progress[ch.id].estado==='completed'?ch.points:0),0);
-    return `<section class="fc-wrap"><div class="fc-header"><div><span>Bono de temporada</span><h2>Biblioteca de Retos Wolves</h2><p>Completa retos de autorregulación, empatía y gratitud. Cada reto entrega EightCoins solo una vez.</p></div><div class="fc-score"><strong>${done}/5</strong><small>Retos</small><strong>${coins} EC</strong><small>Ganados</small></div></div><div class="fc-grid">${CHALLENGES.map(ch=>challengeCard(ch,progress[ch.id])).join('')}</div><article class="card full fc-reward"><h3>Recompensa por Completar la Biblioteca</h3><p>Progreso: ${done} de 5 retos completados. Al completar todos, desbloqueas accesorios NFT del perfil.</p><div class="library-progress"><span style="width:${done*20}%"></span></div></article></section>`;
+    const coins=CHALLENGES.reduce((sum,ch)=>sum+(progress[ch.id].estado==='completed'?ch.points:0),0)+(currentUser().challengeLibraryRewarded?200:0);
+    return `<section class="fc-wrap"><div class="fc-header"><div><span>Bono de temporada</span><h2>Biblioteca de Retos Wolves</h2><p>Completa retos de autorregulación, empatía y gratitud. Cada reto entrega EightCoins solo una vez.</p></div><div class="fc-score"><strong>${done}/5</strong><small>Retos</small><strong>${coins} EC</strong><small>Ganados</small></div></div><div class="fc-grid">${CHALLENGES.map(ch=>challengeCard(ch,progress[ch.id])).join('')}</div>${rewardSection(done)}</section>`;
   }
 
   function openModal(id){
@@ -82,9 +93,7 @@
   }
   function createModal(){const d=document.createElement('dialog');d.id='challengeModal';d.className='fc-modal';document.body.appendChild(d);return d;}
   function completedView(ch,p){return `<div class="fc-completed"><img src="${ch.img}" alt="${ch.name}"><h3>Reto completado</h3><p>Fecha: ${p.fechaFin?new Date(p.fechaFin).toLocaleString():'Registrado'}</p><p>Puntos ganados: <strong>${p.puntos} EightCoins</strong></p><div class="fc-answer-list">${Object.entries(p.respuestas||{}).map(([k,v])=>`<p><b>${k}:</b> ${Array.isArray(v)?v.join(', '):v}</p>`).join('')||'<p>Sin respuestas registradas.</p>'}</div></div>`;}
-  function modalContent(ch,p){
-    return `<div class="modal-head fc-modal-head"><div><strong>${ch.name}</strong><span>${badgeLabel(p.estado)} · ${ch.points} EightCoins</span></div><button class="icon-btn fc-close">×</button></div>${p.estado==='completed'?completedView(ch,p):modalBody(ch,p)}`;
-  }
+  function modalContent(ch,p){return `<div class="modal-head fc-modal-head"><div><strong>${ch.name}</strong><span>${badgeLabel(p.estado)} · ${ch.points} EightCoins</span></div><button class="icon-btn fc-close">×</button></div>${p.estado==='completed'?completedView(ch,p):modalBody(ch,p)}`;}
   function modalBody(ch){
     if(ch.type==='breathing')return `<div class="fc-breath"><div class="breath-orb" id="breathOrb"><span id="breathPhase">Listo</span><strong id="breathTimer">3</strong></div><p id="breathHelp">Completa 3 ciclos: inhalar 4s, mantener 7s y exhalar 8s.</p><div class="fc-progress"><span id="breathProgress"></span></div><button class="primary-btn" id="startBreath">Iniciar ejercicio</button><button class="success-btn" id="finishBreath" disabled>Certificar reto completado</button></div>`;
     const guide=ch.guide?`<div class="fc-guide">${ch.guide.map(g=>`<p>✓ ${g}</p>`).join('')}</div>`:'';
@@ -109,20 +118,32 @@
     const p=state.progress[ch.id]||baseProgress(ch);
     if(p.estado==='completed')return notify('Este reto ya fue completado. No se entregan monedas dos veces.');
     p.estado='completed';p.completado=true;p.respuestas=respuestas;p.fechaFin=nowIso();p.puntos=ch.points;state.progress[ch.id]=p;
-    const usr=currentUser();usr.coins=(usr.coins||0)+ch.points;usr.eightCoins=usr.coins;usr.retosCompletados=Object.values(state.progress).filter(r=>r.completado).length;
+    const usr=currentUser();usr.coins=(usr.coins||0)+ch.points;usr.eightCoins=usr.coins;usr.retosCompletados=completedCount();
     if(typeof block==='function')await block('Reto completado: '+ch.name);
     await persistProgress(ch.id);
-    showReward(ch.points);notify(`✨ +${ch.points} EightCoins`);document.getElementById('challengeModal').close();render();
+    if(completedCount()>=5 && !usr.challengeLibraryRewarded){
+      usr.challengeLibraryRewarded=true;usr.coins+=200;usr.eightCoins=usr.coins;usr.nftUnlocked=true;S.nfts=(S.nfts||[]).map(n=>({...n,unlocked:true}));
+      S.wallet=S.wallet||[];S.wallet.unshift({date:new Date().toISOString().slice(0,10),type:'Súper Bono',amount:200,detail:'Biblioteca de retos completada'});
+      if(typeof block==='function')await block('Súper bono y NFTs por biblioteca completa');
+      showReward(200);notify('Biblioteca completa: +200 EightCoins y NFTs desbloqueados');
+    }else{
+      showReward(ch.points);notify(`✨ +${ch.points} EightCoins`);
+    }
+    document.getElementById('challengeModal').close();saveApp();render();
   }
   async function persistProgress(id){saveLocal();syncCoins();saveApp();try{await saveRemoteChallenge(id);}catch(e){console.warn(e);notify('Guardado local. Firebase no disponible: '+e.message);}}
   function showReward(points){const el=document.createElement('div');el.className='coin-burst';el.textContent=`✨ +${points} EightCoins`;document.body.appendChild(el);setTimeout(()=>el.remove(),1800);}
+  function bindNfts(){
+    document.querySelectorAll('.fc-preview-nft').forEach(b=>b.onclick=()=>{currentUser().previewNft=b.dataset.nft;currentUser().previewNftImage=b.dataset.img;notify('Vista previa NFT: '+b.dataset.nft);saveApp();});
+    document.querySelectorAll('.fc-equip-nft').forEach(b=>b.onclick=()=>{currentUser().equippedNft=b.dataset.nft;currentUser().equippedNftImage=b.dataset.img;notify('NFT equipado: '+b.dataset.nft);saveApp();render();});
+  }
 
   window.addEventListener('load',()=>{
     if(typeof S==='undefined')return;
     initChallenges();
     challenges=window.challenges=challengesView;
     const prev=typeof bindStudent==='function'?bindStudent:null;
-    bindStudent=window.bindStudent=function(){if(prev)prev();document.querySelectorAll('.fc-open-challenge').forEach(b=>b.onclick=()=>openModal(b.dataset.id));};
+    bindStudent=window.bindStudent=function(){if(prev)prev();document.querySelectorAll('.fc-open-challenge').forEach(b=>b.onclick=()=>openModal(b.dataset.id));bindNfts();};
     if(typeof render==='function')render();
   });
 })();
