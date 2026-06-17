@@ -10,7 +10,9 @@
   function notify(text){if(typeof toast==='function')toast(text);}
   function cloneState(){return JSON.parse(JSON.stringify(window.S||{}));}
   function field(id){return document.getElementById(id)?.value?.trim()||'';}
-  function setBadge(text,enabled){
+  function hasConfig(){const c=getExistingConfig();return !!(c.apiKey&&c.projectId&&c.appId);}
+  function disconnectedLabel(ctx){return hasConfig()?`Firebase error`: 'Configurar Firebase';}
+  function setBadge(text,enabled,title=''){
     let badge=document.getElementById('firebaseStatusBadge');
     if(!badge){
       badge=document.createElement('button');
@@ -21,7 +23,9 @@
       document.body.appendChild(badge);
     }
     badge.textContent=text;
+    badge.title=title||text;
     badge.classList.toggle('online',!!enabled);
+    badge.classList.toggle('error',text.includes('error'));
   }
   function getExistingConfig(){
     return window.WOLVES_FIREBASE_CONFIG||window.WolvesFirebase?.getConfig?.()||{};
@@ -38,18 +42,8 @@
       document.getElementById('closeFirebaseConfig').onclick=()=>modal.close();
       document.getElementById('firebaseConfigForm').onsubmit=ev=>{
         ev.preventDefault();
-        const config={
-          apiKey:field('fbApiKey'),
-          authDomain:field('fbAuthDomain'),
-          projectId:field('fbProjectId'),
-          storageBucket:field('fbStorageBucket'),
-          messagingSenderId:field('fbMessagingSenderId'),
-          appId:field('fbAppId')
-        };
-        if(!config.apiKey||!config.authDomain||!config.projectId||!config.appId){
-          notify('Faltan campos obligatorios de Firebase.');
-          return;
-        }
+        const config={apiKey:field('fbApiKey'),authDomain:field('fbAuthDomain'),projectId:field('fbProjectId'),storageBucket:field('fbStorageBucket'),messagingSenderId:field('fbMessagingSenderId'),appId:field('fbAppId')};
+        if(!config.apiKey||!config.authDomain||!config.projectId||!config.appId){notify('Faltan campos obligatorios de Firebase.');return;}
         localStorage.setItem(SETTINGS_KEY,JSON.stringify(config));
         window.WOLVES_FIREBASE_CONFIG=config;
         notify('Configuración Firebase guardada. Recargando para conectar...');
@@ -59,65 +53,43 @@
     }
     modal.showModal();
   }
-  async function ctx(){
-    if(!window.WolvesFirebase) return {enabled:false,reason:'Firebase SDK no cargado'};
-    return window.WolvesFirebase.ready();
-  }
+  async function ctx(){if(!window.WolvesFirebase)return{enabled:false,reason:'Firebase SDK no cargado'};return window.WolvesFirebase.ready();}
   async function pullRemote(){
     const c=await ctx();
     online=!!c.enabled;
-    setBadge(online?'Firebase conectado':'Configurar Firebase',online);
+    setBadge(online?'Firebase conectado':disconnectedLabel(c),online,c.reason||'');
     if(!c.enabled) return;
     const {doc,getDoc,setDoc,serverTimestamp}=c.dbMod;
     const ref=doc(c.db,COLLECTION,docId());
     const snap=await getDoc(ref);
     if(snap.exists()){
       const data=snap.data();
-      if(data.state&&window.S){
-        window.S={...window.S,...data.state};
-        if(data.state.currentUser) S.currentUser=data.state.currentUser;
-        if(typeof saveLocalOnly==='function') saveLocalOnly();
-        if(typeof render==='function') render();
-      }
-    }else if(window.S){
-      await setDoc(ref,{email:currentEmail(),state:cloneState(),createdAt:serverTimestamp(),updatedAt:serverTimestamp()},{merge:true});
-    }
+      if(data.state&&window.S){window.S={...window.S,...data.state};if(data.state.currentUser)S.currentUser=data.state.currentUser;if(typeof saveLocalOnly==='function')saveLocalOnly();if(typeof render==='function')render();}
+    }else if(window.S){await setDoc(ref,{email:currentEmail(),state:cloneState(),createdAt:serverTimestamp(),updatedAt:serverTimestamp()},{merge:true});}
   }
   async function pushRemote(reason='auto'){
-    if(syncing||!window.S) return;
+    if(syncing||!window.S)return;
     const now=Date.now();
-    if(reason==='auto'&&now-lastSave<900) return;
-    lastSave=now;
-    syncing=true;
+    if(reason==='auto'&&now-lastSave<900)return;
+    lastSave=now;syncing=true;
     try{
       const c=await ctx();
       online=!!c.enabled;
-      setBadge(online?'Firebase conectado':'Configurar Firebase',online);
-      if(!c.enabled) return;
+      setBadge(online?'Firebase conectado':disconnectedLabel(c),online,c.reason||'');
+      if(!c.enabled)return;
       const {doc,setDoc,serverTimestamp}=c.dbMod;
       await setDoc(doc(c.db,COLLECTION,docId()),{email:currentEmail(),state:cloneState(),updatedAt:serverTimestamp()},{merge:true});
-    }catch(error){
-      console.warn('WOLVES Firestore sync fallback:',error);
-      setBadge('Firebase error',false);
-    }finally{
-      syncing=false;
-    }
+    }catch(error){console.warn('WOLVES Firestore sync fallback:',error);setBadge('Firebase error',false,error.message);}
+    finally{syncing=false;}
   }
   function wrapSave(){
-    if(typeof save!=='function'||window.__wolvesSaveWrapped) return;
+    if(typeof save!=='function'||window.__wolvesSaveWrapped)return;
     window.saveLocalOnly=save;
     const original=save;
-    window.save=function wolvesSyncedSave(){
-      original();
-      pushRemote('auto');
-    };
+    window.save=function wolvesSyncedSave(){original();pushRemote('auto');};
     window.__wolvesSaveWrapped=true;
   }
   window.WolvesData={pullRemote,pushRemote,showFirebasePanel};
-  window.addEventListener('load',()=>{
-    wrapSave();
-    pullRemote().catch(error=>console.warn('WOLVES Firebase pull:',error));
-    setInterval(()=>pushRemote('auto'),10000);
-  });
+  window.addEventListener('load',()=>{wrapSave();pullRemote().catch(error=>{console.warn('WOLVES Firebase pull:',error);setBadge('Firebase error',false,error.message);});setInterval(()=>pushRemote('auto'),10000);});
   window.addEventListener('beforeunload',()=>{pushRemote('final');});
 })();
