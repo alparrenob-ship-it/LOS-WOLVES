@@ -51,10 +51,17 @@ function openPickupModal(items){
     </form>`;
   modal.showModal();
   modal.querySelector('.pickup-close').onclick=()=>modal.close();
-  modal.querySelector('#pickupForm').onsubmit=ev=>{ev.preventDefault();finalizeExchange(items,modal);};
+  modal.querySelector('#pickupForm').onsubmit=ev=>{ev.preventDefault();finalizeExchange(items,modal,getModalPickupData());};
 }
-async function finalizeExchange(items,modal){
-  if(!validateItems(items))return;
+function getModalPickupData(){return{studentName:pickupName.value,grade:pickupGrade.value,email:pickupEmail.value,guardian:pickupGuardian.value,documentId:pickupId.value,pickupDate:pickupDate.value,note:pickupNote.value};}
+function getInlinePickupData(){return{studentName:inlinePickupName.value,grade:inlinePickupGrade.value,email:inlinePickupEmail.value,guardian:inlinePickupGuardian.value,documentId:inlinePickupId.value,pickupDate:inlinePickupDate.value,note:inlinePickupNote.value};}
+function validatePickupData(data){
+  if(!data.studentName||!data.grade||!data.email||!data.guardian||!data.documentId||!data.pickupDate){notify('Completa todos los datos de retiro');return false;}
+  return true;
+}
+function successHtml(order,items,coins){return `<div class="pickup-success inline-ticket"><span>✓</span><h2>Canje confirmado</h2><p>Presenta este código en recepción del colegio para retirar tus productos Wolves.</p><strong>${order.code}</strong><div class="pickup-ticket"><p><b>Retira:</b> ${order.studentName}</p><p><b>Curso:</b> ${order.grade}</p><p><b>Productos:</b> ${items.map(p=>p.name).join(' + ')}</p><p><b>Total descontado:</b> ${coins.toLocaleString('es-EC')} EC</p><p><b>Fecha estimada:</b> ${order.pickupDate}</p></div><button class="primary-btn pickup-done-inline">Entendido</button></div>`;}
+async function finalizeExchange(items,container,data){
+  if(!validateItems(items)||!validatePickupData(data))return;
   const usr=currentUser();
   const code=verificationCode();
   const coins=totalCoins(items);
@@ -62,30 +69,38 @@ async function finalizeExchange(items,modal){
   items.forEach(item=>{const product=S.products.find(p=>p.id===item.id);if(product)product.stock-=1;});
   S.wallet=S.wallet||[];
   S.pickupOrders=S.pickupOrders||[];
-  const order={
-    code,status:'Pendiente de retiro',date:stamp(),studentName:pickupName.value,grade:pickupGrade.value,email:pickupEmail.value,
-    guardian:pickupGuardian.value,documentId:pickupId.value,pickupDate:pickupDate.value,note:pickupNote.value,
-    products:items.map(p=>({id:p.id,name:p.name,coins:p.coins,usd:p.usd})),totalCoins:coins,totalUsd:totalUsd(items)
-  };
+  const order={code,status:'Pendiente de retiro',date:stamp(),...data,products:items.map(p=>({id:p.id,name:p.name,coins:p.coins,usd:p.usd})),totalCoins:coins,totalUsd:totalUsd(items)};
   S.pickupOrders.unshift(order);
   S.wallet.unshift({date:today(),type:'Canje con retiro',amount:-coins,detail:`${items.length} producto(s) · Código ${code}`});
   await registerBlock('Canje Tienda Wolves con retiro: '+code);
   S.cart=[];persist();
-  modal.innerHTML=`<div class="pickup-success"><span>✓</span><h2>Canje confirmado</h2><p>Presenta este código en recepción del colegio para retirar tus productos Wolves.</p><strong>${code}</strong><div class="pickup-ticket"><p><b>Retira:</b> ${order.studentName}</p><p><b>Curso:</b> ${order.grade}</p><p><b>Productos:</b> ${items.map(p=>p.name).join(' + ')}</p><p><b>Total descontado:</b> ${coins.toLocaleString('es-EC')} EC</p><p><b>Fecha estimada:</b> ${order.pickupDate}</p></div><button class="primary-btn pickup-done">Entendido</button></div>`;
-  modal.querySelector('.pickup-done').onclick=()=>{modal.close();notify('Código de retiro generado: '+code);render();};
+  if(container?.tagName==='DIALOG'){
+    container.innerHTML=successHtml(order,items,coins);
+    container.querySelector('.pickup-done-inline').onclick=()=>{container.close();notify('Código de retiro generado: '+code);render();};
+  }else{
+    container.innerHTML=successHtml(order,items,coins);
+    const done=container.querySelector('.pickup-done-inline');
+    if(done)done.onclick=()=>{notify('Código de retiro generado: '+code);render();};
+  }
 }
 function redeemProduct(id){
   const product=S.products.find(p=>p.id===id);
   if(!product)return notify('Producto no encontrado');
-  openPickupModal([product]);
+  S.cart=[product.id];persist();render();setTimeout(()=>document.getElementById('pickupInlineForm')?.scrollIntoView({behavior:'smooth',block:'center'}),80);
 }
-function checkoutCart(){openPickupModal(cartItems());}
+function checkoutCart(){
+  const form=document.getElementById('pickupInlineForm');
+  if(form)form.scrollIntoView({behavior:'smooth',block:'center'});
+  else openPickupModal(cartItems());
+}
 function clearCart(){S.cart=[];persist();notify('Carrito Wolves vaciado');render();}
 function bindCartFinal(){
   document.querySelectorAll('.cart').forEach(btn=>btn.onclick=()=>addToCart(btn.dataset.id));
   document.querySelectorAll('.buy').forEach(btn=>btn.onclick=()=>redeemProduct(btn.dataset.id));
   document.querySelectorAll('.checkout-pop').forEach(btn=>btn.onclick=checkoutCart);
   document.querySelectorAll('.clear-pop').forEach(btn=>btn.onclick=clearCart);
+  const inlineForm=document.getElementById('pickupInlineForm');
+  if(inlineForm)inlineForm.onsubmit=ev=>{ev.preventDefault();finalizeExchange(cartItems(),inlineForm,getInlinePickupData());};
 }
 window.addEventListener('load',()=>{
   if(typeof S==='undefined')return;
