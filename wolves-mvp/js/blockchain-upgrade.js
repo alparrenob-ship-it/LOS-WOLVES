@@ -1,9 +1,10 @@
 (()=>{
+  const ASSET='assets/';
   const STEPS=[
-    {n:1,title:'Registro',text:'El estudiante completa un reto saludable o canjea un objeto meritorio.',icon:'registro'},
-    {n:2,title:'Transacción',text:'La red genera una transacción transparente para ser firmada.',icon:'transaccion'},
-    {n:3,title:'Criptografía',text:'La acción se firma con SHA-256 y se liga al bloque anterior.',icon:'cripto'},
-    {n:4,title:'Bloque',text:'La constancia queda inmutable en el Libro Mayor sin guardar datos sensibles.',icon:'bloque'}
+    {n:1,title:'Registro',text:'El estudiante completa un reto saludable o canjea un objeto meritorio.',icon:'registro',img:`${ASSET}CONTROLALAANSIEDAD.png`,alt:'Reto saludable Wolves'},
+    {n:2,title:'Transacción',text:'La red genera una transacción transparente para ser firmada.',icon:'transaccion',img:`${ASSET}LOBOWALLET.png`,alt:'Wallet Wolves con EightCoins'},
+    {n:3,title:'Criptografía',text:'La acción se firma con SHA-256 y se liga al bloque anterior.',icon:'cripto',img:`${ASSET}LOGO.png`,alt:'Logo oficial Wolves'},
+    {n:4,title:'Bloque',text:'La constancia queda inmutable en el Libro Mayor sin guardar datos sensibles.',icon:'bloque',img:`${ASSET}MASCOTA BRAZOS CRUZADOS.png`,alt:'Mascota Wolves protegiendo la información'}
   ];
   function saveState(){if(typeof save==='function')save();}
   function notify(t){if(typeof toast==='function')toast(t);}
@@ -32,23 +33,30 @@
     const map={registro:'✍️',transaccion:'🔁',cripto:'🔐',bloque:'🧱'};
     return map[type]||'◇';
   }
+  function blockVisual(action=''){
+    const text=action.toLowerCase();
+    if(text.includes('canje'))return {img:`${ASSET}MATERIAL POP TAZA.jpeg`,alt:'Canje Wolves registrado'};
+    if(text.includes('logro'))return {img:`${ASSET}NFT LOBO CAPUCHA.jpeg`,alt:'NFT de logro Wolves'};
+    if(text.includes('recompensa'))return {img:`${ASSET}MASCOTA CORAZÓN.png`,alt:'Recompensa de bienestar Wolves'};
+    return {img:`${ASSET}RESPIRA Y RELÁJATE.png`,alt:'Reto completado Wolves'};
+  }
   function rows(){
     const list=chainList();
     if(!list.length){
-      return `<div class="bc-empty-row"><div class="bc-empty-visual"><span>◇</span></div><p>No se han registrado bloques en la bitácora todavía.</p><small>Presiona “Generar bloque demo” para visualizar un ejemplo sin guardar emociones ni datos privados.</small></div>`;
+      return `<div class="bc-empty-row"><div class="bc-empty-visual"><img src="${ASSET}LOGO.png" alt="Logo Wolves"></div><p>No se han registrado bloques en la bitácora todavía.</p><small>Presiona “Generar bloque demo” para visualizar un ejemplo sin guardar emociones ni datos privados.</small></div>`;
     }
-    return list.map(block=>`<article class="bc-block-card">
+    return list.map(block=>{const visual=blockVisual(block.action);return `<article class="bc-block-card">
       <div class="bc-block-number"><span>#${block.number}</span><small>Bloque</small></div>
       <div class="bc-block-main"><h3>${block.action}</h3><p>${block.date}</p><div class="bc-hash-line"><b>SHA-256</b><code>${shortHash(block.hash)}</code></div><div class="bc-hash-line muted"><b>Anterior</b><code>${shortHash(block.previous)}</code></div></div>
-      <div class="bc-image-slot"><span>Imagen futura</span></div>
-    </article>`).join('');
+      <div class="bc-image-slot"><img src="${visual.img}" alt="${visual.alt}"><span>Constancia visual</span></div>
+    </article>`}).join('');
   }
   window.chain=function blockchainExplorerUpgrade(){
     const count=chainList().length;
     return `<section class="bc-shell">
       <article class="bc-how-card">
         <div class="bc-section-head"><div><span>¿Cómo funciona la blockchain de Wolves?</span><h2>Privacidad, constancia y recompensas claras</h2></div><button class="bc-demo-btn" id="bcDemoBlock">Generar bloque demo</button></div>
-        <div class="bc-step-grid">${STEPS.map(step=>`<div class="bc-step-card"><div class="bc-img-placeholder"><span>${stepIcon(step.icon)}</span><small>Imagen aquí</small></div><h3>${step.n}. ${step.title}</h3><p>${step.text}</p></div>`).join('')}</div>
+        <div class="bc-step-grid">${STEPS.map(step=>`<div class="bc-step-card"><div class="bc-img-placeholder"><img src="${step.img}" alt="${step.alt}"><span>${stepIcon(step.icon)}</span></div><h3>${step.n}. ${step.title}</h3><p>${step.text}</p></div>`).join('')}</div>
       </article>
       <article class="bc-explorer-card">
         <div class="bc-explorer-head"><div><h2>Wolves Blockchain Explorer</h2><p>Se registran retos superados, logros, recompensas y canjes. Nunca emociones, comentarios personales ni información sensible.</p></div><span class="bc-status">Libro Mayor Activo</span></div>
