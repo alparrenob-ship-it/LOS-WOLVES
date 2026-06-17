@@ -108,7 +108,7 @@ El objetivo es ayudar a los estudiantes a reconocer sus emociones, fortalecer h√
 
 ### Pitch Deck
 
-Pendiente de agregar enlace.
+[Ver Pitch Deck WOLVES](assets/Presentaci%C3%B3n%20Wolves_compressed.pdf)
 
 ### Whitepaper
 
