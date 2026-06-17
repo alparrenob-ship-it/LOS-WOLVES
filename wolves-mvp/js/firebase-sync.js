@@ -9,6 +9,7 @@
   function docId(){return currentEmail().replace(/[^a-zA-Z0-9_-]/g,'_');}
   function notify(text){if(typeof toast==='function')toast(text);}
   function cloneState(){return JSON.parse(JSON.stringify(window.S||{}));}
+  function field(id){return document.getElementById(id)?.value?.trim()||'';}
   function setBadge(text,enabled){
     let badge=document.getElementById('firebaseStatusBadge');
     if(!badge){
@@ -22,9 +23,12 @@
     badge.textContent=text;
     badge.classList.toggle('online',!!enabled);
   }
+  function getExistingConfig(){
+    return window.WOLVES_FIREBASE_CONFIG||window.WolvesFirebase?.getConfig?.()||{};
+  }
   function firebaseForm(){
-    const existing=window.WolvesFirebase?.getConfig?.()||{};
-    return `<dialog id="firebaseConfigModal" class="auth-modal firebase-modal"><div class="modal-head"><div><strong>Conectar Firebase</strong><span>Configura Firestore para guardar datos reales del MVP.</span></div><button class="icon-btn" id="closeFirebaseConfig">×</button></div><form id="firebaseConfigForm" class="auth-form active"><label>apiKey<input id="fbApiKey" required value="${existing.apiKey||''}"></label><label>authDomain<input id="fbAuthDomain" required value="${existing.authDomain||''}" placeholder="tu-proyecto.firebaseapp.com"></label><label>projectId<input id="fbProjectId" required value="${existing.projectId||''}"></label><label>storageBucket<input id="fbStorageBucket" value="${existing.storageBucket||''}"></label><label>messagingSenderId<input id="fbMessagingSenderId" value="${existing.messagingSenderId||''}"></label><label>appId<input id="fbAppId" required value="${existing.appId||''}"></label><button class="primary-btn" type="submit">Guardar configuración Firebase</button><p class="form-help">Después de guardar, recarga la página. El MVP usará Firestore cuando la configuración sea válida.</p></form></dialog>`;
+    const existing=getExistingConfig();
+    return `<dialog id="firebaseConfigModal" class="auth-modal firebase-modal"><div class="modal-head"><div><strong>Conectar Firebase</strong><span>Configura Firestore para guardar datos reales del MVP.</span></div><button class="icon-btn" id="closeFirebaseConfig">×</button></div><form id="firebaseConfigForm" class="auth-form active"><label>apiKey<input id="fbApiKey" required value="${existing.apiKey||''}"></label><label>authDomain<input id="fbAuthDomain" required value="${existing.authDomain||''}" placeholder="tu-proyecto.firebaseapp.com"></label><label>projectId<input id="fbProjectId" required value="${existing.projectId||''}"></label><label>storageBucket<input id="fbStorageBucket" value="${existing.storageBucket||''}"></label><label>messagingSenderId<input id="fbMessagingSenderId" value="${existing.messagingSenderId||''}"></label><label>appId<input id="fbAppId" required value="${existing.appId||''}"></label><button class="primary-btn" type="submit">Guardar configuración Firebase</button><p class="form-help">Después de guardar, la página se recargará automáticamente para conectar con Firestore.</p></form></dialog>`;
   }
   function showFirebasePanel(){
     let modal=document.getElementById('firebaseConfigModal');
@@ -35,16 +39,22 @@
       document.getElementById('firebaseConfigForm').onsubmit=ev=>{
         ev.preventDefault();
         const config={
-          apiKey:fbApiKey.value.trim(),
-          authDomain:fbAuthDomain.value.trim(),
-          projectId:fbProjectId.value.trim(),
-          storageBucket:fbStorageBucket.value.trim(),
-          messagingSenderId:fbMessagingSenderId.value.trim(),
-          appId:fbAppId.value.trim()
+          apiKey:field('fbApiKey'),
+          authDomain:field('fbAuthDomain'),
+          projectId:field('fbProjectId'),
+          storageBucket:field('fbStorageBucket'),
+          messagingSenderId:field('fbMessagingSenderId'),
+          appId:field('fbAppId')
         };
+        if(!config.apiKey||!config.authDomain||!config.projectId||!config.appId){
+          notify('Faltan campos obligatorios de Firebase.');
+          return;
+        }
         localStorage.setItem(SETTINGS_KEY,JSON.stringify(config));
-        notify('Configuración Firebase guardada. Recarga la página para conectar.');
+        window.WOLVES_FIREBASE_CONFIG=config;
+        notify('Configuración Firebase guardada. Recargando para conectar...');
         modal.close();
+        setTimeout(()=>window.location.reload(),900);
       };
     }
     modal.showModal();
