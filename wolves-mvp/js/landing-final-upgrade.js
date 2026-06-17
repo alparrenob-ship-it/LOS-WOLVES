@@ -80,8 +80,8 @@ function publicLanding(){
         <h2 class="section-title-final">Equipo Wolves</h2>
         <div class="final-grid-3 team-grid-final">
           <article class="landing-info-card team-card-final"><img class="team-photo-final" src="assets/MAITE.png" alt="Maite Bravo"><h3>Maite Bravo</h3><p>Lider del proyecto y vision de bienestar estudiantil.</p></article>
-          <article class="landing-info-card team-card-final"><img class="team-photo-final" src="assets/HAZEL.png" alt="Hazel Yanez"><h3>Hazel Yanez</h3><p>Experiencia de usuario, comunidad y validacion escolar.</p></article>
-          <article class="landing-info-card team-card-final"><img class="team-photo-final" src="assets/DAVID.png" alt="David"><h3>David</h3><p>Tecnologia, desarrollo funcional e innovacion educativa WOLVES.</p></article>
+          <article class="landing-info-card team-card-final"><img class="team-photo-final" src="assets/HAZEL.png" alt="Hazel Yánez"><h3>Hazel Yánez</h3><p>Experiencia de usuario, comunidad y validacion escolar.</p></article>
+          <article class="landing-info-card team-card-final"><img class="team-photo-final" src="assets/DAVID.png" alt="David Palacios"><h3>David Palacios</h3><p>Tecnologia, desarrollo funcional e innovacion educativa WOLVES.</p></article>
         </div>
       </section>
 
