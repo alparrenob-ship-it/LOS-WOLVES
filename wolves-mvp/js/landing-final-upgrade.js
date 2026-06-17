@@ -46,7 +46,7 @@ function publicLanding(){
             <button class="ghost-btn" data-scroll-target="contacto">Contactar administrador</button>
           </div>
         </div>
-        <div class="landing-final-art"><img src="assets/LOBO INICIO.png" alt="Mascota Wolves"></div>
+        <div class="landing-final-art"><img src="assets/MASCOTA BRAZOS CRUZADOS.png" alt="Mascota Wolves brazos cruzados"></div>
       </section>
 
       <section class="landing-final-section" data-section="problema">
