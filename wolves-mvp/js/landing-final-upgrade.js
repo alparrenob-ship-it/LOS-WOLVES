@@ -1,7 +1,8 @@
 (()=>{
 const sectionMap={
-  'Inicio':'inicio','Problema':'problema','Solución':'solucion','ODS':'ods','Cómo funciona':'funciona','Equipo':'equipo','Misión':'mision','Visión':'vision','Planes SaaS':'planes-saas','Contacto':'contacto'
+  'Inicio':'inicio','Problema':'problema','Solución':'solucion','ODS':'ods','Cómo funciona':'funciona','Equipo':'equipo','Planes SaaS':'planes-saas','Contacto':'contacto'
 };
+const guestItems=['Inicio','Problema','Solución','ODS','Cómo funciona','Equipo','Planes SaaS','Contacto'];
 const plans={
   Bronce:{price:'$499',limit:'Hasta 300 estudiantes',features:['Alertas basicas del DECE','Wallet de Eight-Coins basicos','Sin chatbot de IA']},
   Plata:{price:'$999',limit:'Hasta 1000 estudiantes',features:['Bot Wolf AI activo','Retos mensuales','Libro mayor blockchain visible']},
@@ -15,9 +16,8 @@ function install(){
 }
 function guestMenu(){
   if(S.role!=='guest')return originalMenu();
-  const items=menus.guest;
-  if(!active||!items.includes(active))active='Inicio';
-  e('roleMenu').innerHTML=items.map(item=>`<button data-m="${item}" class="${item===active?'active guest-scroll-active':''}">◆ ${item}</button>`).join('');
+  if(!active||!guestItems.includes(active))active='Inicio';
+  e('roleMenu').innerHTML=guestItems.map(item=>`<button data-m="${item}" class="${item===active?'active guest-scroll-active':''}">◆ ${item}</button>`).join('');
   document.querySelectorAll('[data-m]').forEach(btn=>{
     btn.onclick=()=>{
       active=btn.dataset.m;
@@ -78,21 +78,11 @@ function publicLanding(){
 
       <section class="landing-final-section" data-section="equipo">
         <h2 class="section-title-final">Equipo Wolves</h2>
-        <div class="final-grid-3">
-          <article class="landing-info-card"><h3>Maite Bravo</h3><p>Lider del proyecto y vision de bienestar estudiantil.</p></article>
-          <article class="landing-info-card"><h3>Hazel Yanez</h3><p>Experiencia de usuario, comunidad y validacion escolar.</p></article>
-          <article class="landing-info-card"><h3>Manada WOLVES</h3><p>Diseno, tecnologia, salud emocional e innovacion educativa.</p></article>
+        <div class="final-grid-3 team-grid-final">
+          <article class="landing-info-card team-card-final"><img class="team-photo-final" src="assets/MAITE.png" alt="Maite Bravo"><h3>Maite Bravo</h3><p>Lider del proyecto y vision de bienestar estudiantil.</p></article>
+          <article class="landing-info-card team-card-final"><img class="team-photo-final" src="assets/HAZEL.png" alt="Hazel Yanez"><h3>Hazel Yanez</h3><p>Experiencia de usuario, comunidad y validacion escolar.</p></article>
+          <article class="landing-info-card team-card-final"><img class="team-photo-final" src="assets/DAVID.png" alt="David"><h3>David</h3><p>Tecnologia, desarrollo funcional e innovacion educativa WOLVES.</p></article>
         </div>
-      </section>
-
-      <section class="landing-final-section" data-section="mision">
-        <h2 class="section-title-final">Mision</h2>
-        <article class="landing-info-card"><p>Proteger el bienestar emocional estudiantil mediante una plataforma clara, gamificada y empatica que una a estudiantes, DECE, familias e institucion.</p></article>
-      </section>
-
-      <section class="landing-final-section" data-section="vision">
-        <h2 class="section-title-final">Vision</h2>
-        <article class="landing-info-card"><p>Convertir a WOLVES en el ecosistema escolar de referencia para prevencion emocional, acompanamiento temprano y cultura de cuidado colectivo.</p></article>
       </section>
 
       <section class="landing-final-section" data-section="planes-saas" id="planes-saas">
