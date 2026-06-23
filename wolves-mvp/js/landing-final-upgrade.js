@@ -4,9 +4,9 @@ const sectionMap={
 };
 const guestItems=['Inicio','Problema','Solución','ODS','Cómo funciona','Equipo','Planes SaaS','Contacto'];
 const plans={
-  Bronce:{price:'$499',limit:'Hasta 300 estudiantes',features:['Alertas basicas del DECE','Wallet de Eight-Coins basicos','Sin chatbot de IA']},
-  Plata:{price:'$999',limit:'Hasta 1000 estudiantes',features:['Bot Wolf AI activo','Retos mensuales','Libro mayor blockchain visible']},
-  Oro:{price:'$2499',limit:'Estudiantes ilimitados',features:['Avatares NFT personalizables','Soporte DECE 24/7','Descarga completa de reportes CSV']}
+  Bronce:{price:'$299',limit:'Hasta 300 estudiantes',features:['Mood Check','Alertas basicas','Dashboard DECE','Reportes basicos']},
+  Plata:{price:'$599',limit:'Hasta 1.000 estudiantes',features:['Todo Bronce','Wolf AI','Gamificacion','Eight Coins','Reportes avanzados']},
+  Oro:{price:'$999',limit:'Estudiantes ilimitados',features:['Todo Plata','Analytics institucional','Blockchain Explorer','NFTs educativos','Soporte prioritario']}
 };
 function install(){
   if(typeof S==='undefined'||typeof e!=='function')return;
@@ -106,7 +106,7 @@ function publicLanding(){
   bindLandingFinal();
 }
 function planCard(name,data){
-  return `<article class="landing-plan-card ${name==='Plata'?'featured':''}">${name==='Plata'?'<span class="landing-plan-tag">Recomendado</span>':''}<h3>Plan ${name}</h3><div class="landing-plan-price">${data.price}<span> USD / ano</span></div><p>${data.limit}</p><ul>${data.features.map(f=>`<li>${f}</li>`).join('')}</ul><button class="primary-btn" data-plan-contact="${name}">Contratar ${name}</button></article>`;
+  return `<article class="landing-plan-card ${name==='Plata'?'featured':''}">${name==='Plata'?'<span class="landing-plan-tag">Recomendado</span>':''}<h3>🐺 Plan ${name}</h3><div class="landing-plan-price">${data.price}<span> USD / ano</span></div><p>${data.limit}</p><p class="plan-includes-label">Incluye:</p><ul>${data.features.map(f=>`<li>${f}</li>`).join('')}</ul><button class="primary-btn" data-plan-contact="${name}">Contratar ${name}</button></article>`;
 }
 function bindLandingFinal(){
   document.querySelectorAll('[data-demo-role]').forEach(btn=>btn.onclick=()=>role(btn.dataset.demoRole));
